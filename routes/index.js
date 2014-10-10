@@ -35,7 +35,9 @@ module.exports = function (app, express, url) {
             if (user) {
                 return res.redirect('/login');
             }
-            res.render('reg', {title: '注册'})
+            init(function (settings) {
+                res.render('reg', {title: '注册',settings:settings});
+            });
         });
     });
 
