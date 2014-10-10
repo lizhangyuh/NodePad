@@ -1,0 +1,56 @@
+        <%- include dash_header %>
+         <!-- 文件上传依赖js -->
+        <script type="text/javascript" src="/javascripts/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery.iframe-transport.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery.fileupload.js"></script>
+        <script type="text/javascript" src="/javascripts/upload.js"></script>
+
+        <script type="text/javascript">
+          function edit(){
+            $('#edit-form').submit();
+          }
+        </script>
+        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
+          <h1 class="page-header">编辑关于页面</h1>
+          <form class="form-horizontal"  id="edit-form" role="form" method="post" action="/dashboard/about/edit">
+            <div class="form-group"><input type="text" <%if (about != undefined){%>value="<%= about.title%>"<%}%> class="form-control" id="title" name="title" placeholder="文章标题"></div>
+            <!-- 上传图片 -->
+            <div class="form-group">
+              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target=".bs-upload-modal-sm">上传图片</button>
+            </div>
+            <%if (about != undefined){%><input type="hidden" class="form-control" id="id" name="id" value="<%= about._id%>" ><%}%>
+            <div class="form-group"><textarea class="form-control" id="post" name="post" rows="18" ><%if (about != undefined){%><%= about.post%><%}%></textarea></div>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary" onclick="edit();">编 辑</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- 上传图片 -->
+     <div class="modal fade bs-upload-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+              </div>
+              <div class="modal-body" style="padding:-10px;">
+                  <p>
+                  <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="/blog/upload">
+                      <label for="file">选择图片：</label>
+                      <input id="fileupload" name="files" type="file" multiple="multiple"/><br>
+                      <div id="progress" class="progress"><div class="progress-bar progress-bar-success"  aria-valuemin="0" aria-valuemax="100"></div></div><div id="files" class="files"></div>
+                  </form> 
+                  </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="addurl" class="btn btn-default" data-dismiss="modal">关 闭</button>
+               <!--  <button type="button" onclick="addurl();" class="btn btn-primary">上 传</button> -->
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <%- include dash_footer %>

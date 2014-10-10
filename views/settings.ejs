@@ -1,0 +1,106 @@
+        <%- include dash_header %>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2 main">
+          <h1 class="page-header">设 置</h1>
+          <form class="form-horizontal" role="form" method="post" action="/dashboard/settings/savesettings">
+            <fieldset disabled>
+            <div class="form-group">
+              <label for="starttime" class="col-sm-2 control-label">创建时间</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="starttime" value="<%= settings.starttime%>">
+              </div>
+            </div>
+            </fieldset>
+            <input type="hidden" id="starttime" name="starttime" value="<%= settings.starttime%>">
+            <div class="form-group">
+              <label for="limit" class="col-sm-2 control-label">每页显示文章数</label>
+              <div class="col-sm-10">
+                <!-- <input type="text" class="form-control" id="limit" name="limit" > -->
+                <select class="form-control" id="limit" name="limit">
+                  <% for(var i=5;i<=10;i++) {%>
+                    <% if (settings.limit){%>
+                      <% if (i==settings.limit) {%>
+                        <option selected="true" value="<%= i%>"><%= i%></option>
+                      <% }else{ %>
+                        <option value="<%= i%>"><%= i%></option>
+                      <% }%>
+                    <% }else{ %>
+                      <option value="<%= i%>"><%= i%></option>
+                    <% }%>    
+                  <% }%>
+                </select>
+              </div>
+            </div>
+              <div class="form-group">
+                  <label for="blogname" class="col-sm-2 control-label">博客名称</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="blogname" value="<%= settings.blogname%>">
+                  </div>
+              </div>
+            <div class="form-group">
+              <label for="intro" class="col-sm-2 control-label">首页简介</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="intro" name="intro" rows="5"><%= settings.intro%></textarea> 
+              </div>
+            </div>
+            <div class="form-group"><div class="col-sm-12"><button type="submit" class="btn btn-primary pull-right">保 存</button></div></div>
+          </form>
+          <!-- 账户设置 -->
+          <h1 class="page-header">账 户</h1>
+          <form class="form-horizontal" role="form" method="post" action="/dashboard/settings/saveuser">
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">昵 称</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" value="<%= user.name%>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="weibo" class="col-sm-2 control-label">微 博</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="weibo" name="weibo" value="<%= user.weibo%>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-sm-2 control-label">E-mail</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="email" name="email" value="<%= user.email%>">
+              </div>
+            </div>
+            <div class="form-group"><div class="col-sm-12"><button type="submit" class="btn btn-primary pull-right">保 存</button></div></div>
+          </form>
+          <!-- 密码修改 -->
+          <h1 class="page-header">密码修改</h1>
+          <form class="form-horizontal" role="form" method="post" action="/dashboard/settings/editpwd">
+            <fieldset disabled>
+              <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="username" value="<%= user.username%>">
+                </div>
+              </div>
+            </fieldset>
+              <input type="hidden" class="form-control" name="username" value="<%= user.username%>">
+            <div class="form-group">
+              <label for="oldpwd" class="col-sm-2 control-label">旧密码</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="oldpwd" name="oldpwd" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="newpwd" class="col-sm-2 control-label">新密码</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="newpwd" name="newpwd" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="repwd" class="col-sm-2 control-label">重复密码</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="repwd" name="repwd" >
+              </div>
+            </div>
+            <div class="form-group"><div class="col-sm-12"><button type="submit" class="btn btn-primary pull-right">保 存</button></div></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <%- include dash_footer %>

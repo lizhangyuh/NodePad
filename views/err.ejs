@@ -1,0 +1,26 @@
+<%- include header %>
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+      <!-- 导航开始 -->
+        <div class="masthead clearfix">
+            <div class="inner">
+                <h3 class="masthead-brand">Jerry Lee</h3>
+                <ul class="nav masthead-nav">
+                    <li><a href="/">主页</a></li>
+                    <li><a href="/blog">博客</a></li>
+                    <li><a href="/about">关于</a></li>
+                </ul>
+            </div>
+        </div>
+      <!-- 导航结束 -->
+    <% if (success) { %>
+      <p><%= success %></p>
+    <% } %>
+    <% if (error) { %>
+      <p><%= error %> </p>
+    <% } %>
+<a href="javascript:history.go(-1);">&laquo;返回</a>
+<%- include footer %>

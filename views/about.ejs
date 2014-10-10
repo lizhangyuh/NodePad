@@ -1,0 +1,47 @@
+<%- include header %>
+<%if (!about){%>
+    <style type="text/css">
+        .mastfoot{position: fixed;text-align: center;bottom: 0;}
+    </style>
+<%}%>
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner"  <%if (about){%>style="display:block;"<%}%>>
+
+    <div class="cover-container">
+      <!-- 导航开始 -->
+        <%- include menu %>
+      <!-- 导航结束 -->
+        <%if (about){%>
+        <div class="container-fluid" style="text-align:left">
+            <br><br>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="blog-post-title"><%= about.title %></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 blog-main">
+                    <p class="blog-post-meta">
+                        <small>
+                            <span class="glyphicon glyphicon-time"></span> 最后修改于 <%= about.edittime.minute%>
+                            <% if(user) { %>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<a
+                                    href="/dashboard/about/edit"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑本页</a>
+                            <% } %>
+                        </small>
+                    </p>
+                    <div class="blog-post" style="font-size:13px;color:#aaa;">
+                        <%- about.post %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}else{%>
+        <div class="inner cover">
+            <h3>这里是关于页面，暂时没什么好说的</h3>
+            <p>Building...Coming soon...</p>
+        </div>
+        <%}%>
+<%- include footer %>

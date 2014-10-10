@@ -1,0 +1,99 @@
+<%- include header %>
+
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner" style="display:block;">
+
+        <div class="cover-container">
+            <!-- 导航开始 -->
+            <%- include menu %>
+            <!-- 导航结束 -->
+            <div class="container-fluid" style="text-align:left">
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h2 class="blog-post-title"><%= post.title %></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 blog-main">
+                        <p class="blog-post-meta">
+                            <small>
+                                <span class="glyphicon glyphicon-time"></span> 发布于 <%= post.time.minute %>
+                                <% post.tags.forEach(function (tag, index) { %>
+                                <% if (index == 0 && tag != ''){ %>
+                                &nbsp;&nbsp;&nbsp;
+                                <span class="glyphicon glyphicon-tags"></span>&nbsp;
+                                <% } %>
+                                <% if (index != post.tags.length - 1){ %>
+                                <a href="/blog/tags/<%= tag %>"><%= tag %></a> ,
+                                <% }else{ %>
+                                <a href="/blog/tags/<%= tag %>"><%= tag %></a>
+                                <% } %>
+                                <% }) %>
+                                &nbsp;&nbsp;&nbsp;
+                                <a href="" target="_blank" id="shareBtn"><span class="glyphicon glyphicon-share"></span>&nbsp;转发到微博</a>
+                                <script language="JavaScript">
+                                    /* weiboShare */
+                                    function weiboShare(){
+                                        var wb_shareBtn = document.getElementById("shareBtn")
+                                        wb_url = document.URL, //获取当前页面地址，也可自定义
+                                                wb_appkey = "",
+                                                wb_title = "【<%= settings.blogname%>】 " + document.title + '（采用jlBox搭建博客）',
+                                                wb_ralateUid = "",
+                                                wb_pic = "",
+                                                wb_language = "zh_cn";
+
+                                        wb_shareBtn.setAttribute("href","http://service.weibo.com/share/share.php?url="+wb_url+"&searchPic=true&appkey="+wb_appkey+"&title="+wb_title+"&ralateUid="+wb_ralateUid+"&language="+wb_language+"");
+                                    }
+                                    weiboShare()
+                                </script>
+                                <% if(user) { %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<a
+                                        href="/blog/edit/<%= post._id %>"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑文章</a>
+                                <% } %>
+                            </small>
+                        </p>
+                        <div class="blog-post" style="font-size:13px;color:#aaa;">
+                            <%- post.post %>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 pull-right" style="padding-left: 30px;">
+                        <p><a href="javascript:history.go(-1);">&laquo;返回</a></p>
+
+                        <div class="hidden-xs">
+                            <div class="sidebar-module">
+                                <h4><%= author.name %></h4>
+                                <ol class="list-unstyled">
+                                    <% if (author.weibo) { %>
+                                    <li><a href="<%= author.weibo %>" target="_blank">Weibo</a></li>
+                                    <% } %>
+                                    <% if (author.github) { %>
+                                    <li><a href="#">Github</a></li>
+                                    <% } %>
+                                    <% if (author.email) { %>
+                                    <li><a href="mailto:<%= author.email %>">E-mail</a></li>
+                                    <% } %>
+                                </ol>
+                            </div>
+                            <div class="sidebar-module">
+                                <h4>文章归档</h4>
+                                <ol class="list-unstyled">
+                                    <% archiveTimes.forEach(function (archiveTime, index) { %>
+                                    <li><a href="/blog/archives/<%= archiveTime %>/"><%= archiveTime %></a></li>
+                                    <% }) %>
+                                </ol>
+                            </div>
+                            <div class="sidebar-module">
+                                <h4>文章标签</h4>
+                                <ol class="list-unstyled">
+                                    <% tags.forEach(function (atag, index) { %>
+                                    <li><a href="/blog/tags/<%= atag %>/"><%= atag %></a></li>
+                                    <% }) %>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.blog-sidebar -->
+<%- include footer %>

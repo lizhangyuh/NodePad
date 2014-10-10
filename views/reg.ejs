@@ -1,0 +1,23 @@
+<%- include header %>
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+      <div class="container" style="width:80%;text-align:left">
+
+      <form class="form-signin" role="form" method="post" action="/reg">
+        <h2 class="form-signin-heading">注册管理员</h2>
+        <input name="username" type="text" class="form-control" placeholder="用户名" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="密码" required>
+        <input name="repassword" type="password" class="form-control" placeholder="确认密码" required>
+        <input name="name" type="text" class="form-control" placeholder="昵称" required>
+        <input name="email" type="text" class="form-control" placeholder="E-mail" required>
+        <input name="weibo" type="text" class="form-control" placeholder="微博地址" required>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="注 册"/>
+      </form>
+
+    </div>
+
+<%- include footer %>
+

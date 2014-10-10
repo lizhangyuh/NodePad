@@ -1,0 +1,51 @@
+        <%- include dash_header %>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
+          <h1 class="page-header">文章列表</h1>
+
+          <!-- <h2 class="sub-header">Section title</h2> -->
+          <p><a href="/blog/publish"><button class="btn btn-success btn-xs">新文章</button></a></p>
+          <div class="table-responsive">
+           <!--  <div class="panel panel-default"> -->
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <!-- <th>ID</th> -->
+                  <th>文章标题</th>
+                  <th>发布时间</th>
+                  <th>更新时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% posts.forEach(function (posts, index) { %>
+                <tr>
+                  <td width="59%"><% if (posts.draft==1){%>[草稿] <%}%><a href="/blog/post/<%= posts.pinyin%>"><%=: posts.title %></a></td>
+                  <td width="15%"><%= posts.time.minute%></td>
+                  <td width="15%"><% if (posts.edittime) {%><%= posts.edittime.minute%><% }%></td>
+                  <td width="11%">
+                    <a href="/blog/edit/<%= posts._id%>"><button class="btn btn-warning btn-xs">编 辑</button></a>
+                    <a href="/blog/del/<%= posts._id%>"><button class="btn btn-danger btn-xs">删 除</button></a>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+            <%if (!(isFirst&&isLast)){%>
+            <ul class="pagination pagination-sm">
+              <% if (isFirst){%><li class="disabled"><a href="javascript:void(0);">&laquo;</a></li><% }else{%>
+                <li><a href="/dashboard/<%= page-1%>">&laquo;</a></li>
+              <% }%>
+              <% for (var i=1;i<=total;i++) {%>
+                <li <% if (page==i){ %>class="active" <% }%>><a href="/dashboard/page/<%= i%>"><%= i%></a></li>
+              <% }%>
+              <% if (isLast){%><li class="disabled"><a href="javascript:void(0);">&raquo;</a></li><% }else{%>
+                <li><a href="/dashboard/<%= page+1%>">&raquo;</a></li>
+              <% }%>
+            </ul>
+            <% }%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include dash_footer %>

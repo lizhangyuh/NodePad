@@ -1,0 +1,24 @@
+<form class="form-horizontal" role="form" method="post" enctype='multipart/form-data' action="/blog/upload">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="form-group">
+          <label for="file">选择图片：</label>
+          <input name="file" type="file" multiple="multiple"/>
+          <div id="progress" class="progress"><div class="progress-bar progress-bar-success"></div></div><div id="files" class="files"></div>
+        </div>
+      
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+      <button type="submit" name="submit" class="btn btn-primary">上 传</button>
+    </div>
+  </div>
+</div>
+</form>   
