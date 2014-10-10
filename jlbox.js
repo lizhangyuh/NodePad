@@ -1,7 +1,7 @@
-//var repl = require("repl"),
-//    msg = "message";
-//console.log('请输入数据库名称：');
-//repl.start("> ").context.m = msg;
+/*主程序
+    安装命令：node jlbox [数据库名称] [数据库地址] [cookie密钥]
+    运行命令：node jlBox
+ */
 var fs = require('fs');
 var Settings = require('./models/settings.js');
 var exec = require('child_process').exec,
