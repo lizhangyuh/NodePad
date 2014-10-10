@@ -13,7 +13,6 @@ var index = require('./routes');
 var dashboard = require('./routes/dashboard');
 var blog = require('./routes/blog');
 var about = require('./routes/about');
-var install = require('./routes/install');
 
 
 var http = require('http');
@@ -56,19 +55,10 @@ if ('development' == app.get('env')) {
 
 //绑定路由
 index(app,express, '/');
-install(app, '/install');
 dashboard(app, '/dashboard');
 blog(app, '/blog');
 about(app, '/about');
 
 http.createServer(app).listen(app.get('port'), function(){
-    console.log('================================');
-    if (configs.db && configs.host && configs.cookieSecret){
-        console.log('jlBox已启动！');
-        console.log('博客地址：你的域名:'+app.get('port')+'。');
-    }else{
-        console.log('欢迎使用jlBox！');
-        console.log('请访问：你的域名:'+app.get('port')+' 完成安装。');
-    }
-    console.log('================================');
+    console.log('端口:'+app.get('port'));
 });
