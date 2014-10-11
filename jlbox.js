@@ -1,6 +1,6 @@
 /*主程序
     安装命令：node jlbox [数据库名称] [数据库地址] [cookie密钥]
-    运行命令：node jlBox
+    运行命令：node jlbox
  */
 var fs = require('fs');
 var Settings = require('./models/settings.js');
@@ -32,6 +32,7 @@ if(!data){
         var settings = new Settings({
             intro:'欢迎使用jlBox博客',
             blogname:'一个jlBox博客',
+            themes:'JLT_JerryLee_1.0',
             starttime:date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
                 date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) ,
             limit:5

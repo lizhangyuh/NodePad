@@ -18,7 +18,7 @@ module.exports = function (app, express, url) {
             }
 
             init(function (settings) {
-                res.render('index',
+                res.render(settings.theme+'/index',
                     {title: '主页',
                         active: active,
                         user: req.session.user,
@@ -36,7 +36,7 @@ module.exports = function (app, express, url) {
                 return res.redirect('/login');
             }
             init(function (settings) {
-                res.render('reg', {title: '注册',settings:settings});
+                res.render(settings.theme+'/reg', {title: '注册',settings:settings})
             });
         });
     });
@@ -87,7 +87,9 @@ module.exports = function (app, express, url) {
             if (!user) {
                 return res.redirect('/reg');//返回注册页
             }
-            res.render('login', {title: '登录'})
+            init(function (settings) {
+                res.render(settings.theme + '/login', {title: '登录',settings:settings});
+            });
         });
     });
 
@@ -120,22 +122,15 @@ module.exports = function (app, express, url) {
 
     //错误信息页
     app.get('/err', function (req, res) {
-        res.render('err',
-            {
-                title: '提示',
-                success: req.flash('success').toString(),
-                error: req.flash('error').toString()
-            })
-    });
-
-    //错误信息页
-    app.get('/hello', function (req, res) {
-        res.render('hello/hello',
-            {
-                title: '提示',
-                success: req.flash('success').toString(),
-                error: req.flash('error').toString()
-            })
+        init(function (settings) {
+            res.render(settings.theme + '/err',
+                {
+                    title: '提示',
+                    success: req.flash('success').toString(),
+                    error: req.flash('error').toString(),
+                    settings:settings
+                });
+        });
     });
 
     //需未登录

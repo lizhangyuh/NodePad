@@ -1,0 +1,150 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+textarea{
+    resize: none;
+}
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+  background-color: #f1f1f1;
+}
+.navbar-brand:hover{
+  color: #333!important;
+}
+.navbar-right > li > a:hover{
+  color: #333!important;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f1f1f1;
+    -webkit-box-shadow:-1px -1px 1px #c7c7c7 inset;
+    -moz-box-shadow:-1px -1px 1px #c7c7c7 inset;
+    box-shadow: -1px -1px 1px #c7c7c7 inset;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li {
+  margin: 5px 0;
+}
+.nav-sidebar > li > a {
+  margin-left:8px; 
+  padding-right: 20px;
+  padding-left: 20px;
+  color: #ababab;
+  text-shadow: 0 0px 1px rgba(0,0,0,.1);
+}
+.nav-sidebar > li > a:hover{
+  background-color: #fff;
+  color: #6f6f6f;
+  border-radius: 10px 0 0 10px;
+  margin-left: 12px;
+  -webkit-box-shadow:-1px 1px 1px #c7c7c7;
+  -moz-box-shadow:-1px 1px 1px #c7c7c7;
+  box-shadow:-1px 1px 1px #c7c7c7;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  border-radius: 10px 0 0 10px;
+  margin-left: 12px;
+  color: #6f6f6f;
+  background-color: #fff;
+  -webkit-box-shadow:-1px 1px 1px #c7c7c7;
+  -moz-box-shadow:-1px 1px 1px #c7c7c7;
+  box-shadow:-1px 1px 1px #c7c7c7;
+}
+.bottom-copy{
+  text-shadow: 0 0px 0px rgba(0,0,0,.1);
+  color: #ccc;
+  font-size: 11px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.input-group{
+    margin: 5px 0;
+}

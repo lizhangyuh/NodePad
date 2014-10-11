@@ -36,7 +36,7 @@ module.exports = function(app,url) {
                             posts.forEach(function (post) {
                                 post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*/g, '\r\n');
                             });
-                            res.render('blog', {
+                            res.render(settings.theme+'/blog', {
                                 title: '博客',
                                 active:active,
                                 posts: posts,
@@ -82,7 +82,7 @@ module.exports = function(app,url) {
                             posts.forEach(function (post) {
                                 post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*/g, '\r\n');
                             });
-                            res.render('blog', {
+                            res.render(settings.theme+'/blog', {
                                 title: '博客',
                                 active:active,
                                 posts: posts,
@@ -134,7 +134,7 @@ module.exports = function(app,url) {
                                     posts.forEach(function (post) {
                                         post.post = markdown.toHTML(post.post);
                                     });
-                                    res.render('post', {
+                                    res.render(settings.theme+'/post', {
                                         title: posts[0].title,
                                         active: active,
                                         post: posts[0],
@@ -159,7 +159,7 @@ module.exports = function(app,url) {
     //发布文章页面
     app.get(url+'/publish', checkLogin);
     app.get(url+'/publish',function(req,res){
-        res.render('publish_post', {
+        res.render('dashboard/publish_post', {
             title: '发布文章',
             active:active,
             user: req.session.user
@@ -192,7 +192,7 @@ module.exports = function(app,url) {
                     res.redirect('/err');
                 }else{
                     posts[0].tags = posts[0].tags ? posts[0].tags.join(",") : '';
-                    res.render('edit_post', {
+                    res.render('dashboard/edit_post', {
                         title: '[编辑]' + posts[0].title,
                         post: posts[0],
                         active:active,
@@ -271,7 +271,7 @@ module.exports = function(app,url) {
                             posts.forEach(function (post) {
                                 post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*/g, '\r\n');
                             });
-                            res.render('archives', {
+                            res.render(settings.theme+'/archives', {
                                 title: '文章归档',
                                 active:active,
                                 posts: posts,
@@ -325,7 +325,7 @@ module.exports = function(app,url) {
                             posts.forEach(function (post) {
                                 post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*/g, '\r\n');
                             });
-                            res.render('tags', {
+                            res.render(settings.theme+'/tags', {
                                 title: tag + '标签下的文章',
                                 active:active,
                                 posts: posts,

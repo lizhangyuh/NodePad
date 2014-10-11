@@ -21,7 +21,7 @@ module.exports = function(app,url) {
                 if (about) {
                     about.post = markdown.toHTML(about.post);
                 }
-                res.render('about', {
+                res.render(settings.theme+'/about', {
                     title: '关于',
                     active: active,
                     about: about,
@@ -42,7 +42,7 @@ module.exports = function(app,url) {
                     return res.redirect('/err');
                 }
 
-                res.render('edit_about', {
+                res.render('dashboard/edit_about', {
                     title: '编辑关于页面',
                     about: about,
                     active: active,

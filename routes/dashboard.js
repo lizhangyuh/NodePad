@@ -7,6 +7,7 @@ var User = require('../models/user.js');
 var Settings = require('../models/settings.js');
 var init = require('../init');
 var crypto = require('crypto');
+var fs = require('fs');
 
 module.exports = function(app,url) {
 	//后台文章列表页面
@@ -18,7 +19,7 @@ module.exports = function(app,url) {
                 if (err) {
                     posts = [];
                 } else {
-                    res.render('dashboard', {
+                    res.render('dashboard/dashboard', {
                         title: '文章列表',
                         posts: posts, active: 'blog',
                         page: 1,
@@ -46,7 +47,7 @@ module.exports = function(app,url) {
                 if (err) {
                     posts = [];
                 } else {
-                    res.render('dashboard', {
+                    res.render('dashboard/dashboard', {
                         title: '文章列表',
                         posts: posts, active: 'blog',
                         page: page,
@@ -63,14 +64,28 @@ module.exports = function(app,url) {
 	//网站设置
 	app.get(url+'/settings', checkLogin);
 	app.get(url+'/settings',function(req,res){
-        init(function(settings){
-			res.render('settings',{
-				title:'设置',
-				user:req.session.user,
-				settings:settings,
-				active:'settings'
-			});
-		});
+        fs.readdir('public/themes',function(err, files){
+            if(err){
+                req.flash('error', err);
+                return res.redirect('/err');
+            }
+            var themes = new Array();
+            files.forEach(function(file,index){
+                if (file.length>4 && file.substr(0,4) == "JLT_" ){
+                    themes.push(file);
+                    console.log(file);
+                }
+            })
+            init(function(settings){
+                res.render('dashboard/settings',{
+                    title:'设置',
+                    user:req.session.user,
+                    settings:settings,
+                    themes:themes,
+                    active:'settings'
+                });
+            });
+        });
 	});
 
 	//保存全局设置
@@ -79,7 +94,9 @@ module.exports = function(app,url) {
 		var settings = new Settings({
 			intro:req.body.intro,
 			starttime:req.body.starttime,
-			limit:req.body.limit
+			limit:req.body.limit,
+            blogname:req.body.blogname,
+            themes:req.body.themes
 		});
 		settings.save(function(err){
 			if (err) {

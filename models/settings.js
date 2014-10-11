@@ -8,7 +8,8 @@ function Settings(params) {
   this.blogname = params.blogname;
   this.intro = params.intro;
   this.starttime = params.starttime;
-  this.limit = params.limit;
+  this.theme = params.themes;
+  this.limit = params.limit
 }
 
 module.exports = Settings;
