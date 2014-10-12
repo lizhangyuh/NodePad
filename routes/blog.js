@@ -7,7 +7,7 @@ var markdown = require("markdown").markdown;
 var User = require('../models/user.js');
 var init = require('../init');
 var formidable = require('formidable');
-var configs = require('../readConfigs.js');
+var configs = require('../configs.json');
 var fs = require('fs');
 
 module.exports = function(app,url) {

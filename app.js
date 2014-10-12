@@ -4,9 +4,8 @@
  */
 
 var express = require('express');
-var configs = require('./readConfigs');
 
-configs = new configs();
+var configs = require('./configs.json');
 
 //引用路由文件
 var index = require('./routes');

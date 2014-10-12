@@ -4,7 +4,7 @@
 var crypto = require('crypto');
 var User = require('../models/user.js');
 var init = require('../init');
-var configs = require('../readConfigs.js');
+var configs = require('../configs.json');
 
 module.exports = function (app, express, url) {
     //去掉url前斜杠
