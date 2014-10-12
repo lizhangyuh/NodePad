@@ -159,10 +159,13 @@ module.exports = function(app,url) {
     //发布文章页面
     app.get(url+'/publish', checkLogin);
     app.get(url+'/publish',function(req,res){
-        res.render('dashboard/publish_post', {
-            title: '发布文章',
-            active:active,
-            user: req.session.user
+        init(function(settings) {
+            res.render('dashboard/publish_post', {
+                title: '发布文章',
+                active: active,
+                user: req.session.user,
+                settings:settings
+            });
         });
     });
 
@@ -184,26 +187,29 @@ module.exports = function(app,url) {
     //编辑文章页面
     app.get(url+'/edit/:id', checkLogin);
     app.get(url+'/edit/:id',function(req,res){
-        if(req.params.id){
-            var _id = new require('mongodb').ObjectID(req.params.id);
-            Post.get({_id:_id},null,null,function(err,posts){
-                if(err){
-                    req.flash('error','没有此文章，或已删除！');
-                    res.redirect('/err');
-                }else{
-                    posts[0].tags = posts[0].tags ? posts[0].tags.join(",") : '';
-                    res.render('dashboard/edit_post', {
-                        title: '[编辑]' + posts[0].title,
-                        post: posts[0],
-                        active:active,
-                        user: req.session.user
-                    });
-                }
-            });
-        }else{
-            req.flash('error','参数错误！');
-            res.redirect('/err');
-        }
+        init(function(settings) {
+            if (req.params.id) {
+                var _id = new require('mongodb').ObjectID(req.params.id);
+                Post.get({_id: _id}, null, null, function (err, posts) {
+                    if (err) {
+                        req.flash('error', '没有此文章，或已删除！');
+                        res.redirect('/err');
+                    } else {
+                        posts[0].tags = posts[0].tags ? posts[0].tags.join(",") : '';
+                        res.render('dashboard/edit_post', {
+                            title: '[编辑]' + posts[0].title,
+                            post: posts[0],
+                            active: active,
+                            user: req.session.user,
+                            settings:settings
+                        });
+                    }
+                });
+            } else {
+                req.flash('error', '参数错误！');
+                res.redirect('/err');
+            }
+        });
     });
 
     //编辑文章

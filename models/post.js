@@ -1,9 +1,6 @@
 //文章模块
 //var mongodb = require('./db');
-var configs = require('../readConfigs.js'),
-    Db = require('mongodb').Db,
-    connection = require('mongodb').Connection,
-    Server = require('mongodb').Server;
+var mongodb = require('./db');
 var pinyin = require("pinyin");
 
 function Post(obj) {
@@ -18,7 +15,6 @@ module.exports = Post;
 
 //存储一篇文章及其相关信息
 Post.prototype.save = function(callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
     var date = new Date();
 	//存储各种时间格式，方便以后扩展
 	var time = {
@@ -84,7 +80,6 @@ page:开始查询的位置
 limit：每页显示的数量
 */
 Post.get = function(query,page,limit,callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
 	//打开数据库
 	mongodb.open(function(err,db){
 		if(err){
@@ -125,7 +120,6 @@ Post.get = function(query,page,limit,callback){
 
 //根据id删除文章
 Post.del = function(id,callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
 	//打开数据库
 	mongodb.open(function(err,db){
 		if(err){
@@ -148,7 +142,6 @@ Post.del = function(id,callback){
 
 //根据id编辑文章
 Post.prototype.edit = function(id,callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
 	var date = new Date();
 	//存储各种时间格式，方便以后扩展
 	var time = {
@@ -195,7 +188,6 @@ Post.prototype.edit = function(id,callback){
 
 //查询文章属性数组，property：archiveTime（文章归档），tags（标签）
 Post.getProperty = function(property ,callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
 	//打开数据库
 	mongodb.open(function(err,db){
 		if (err) {
@@ -221,7 +213,6 @@ Post.getProperty = function(property ,callback){
 
 //根据条件获取关于页面文章
 Post.getAbout = function(callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
     //打开数据库
     mongodb.open(function(err,db){
         if(err){
@@ -247,7 +238,6 @@ Post.getAbout = function(callback){
 
 //根据id编辑关于页面
 Post.prototype.editAbout = function(id,callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
     var date = new Date();
     //存储各种时间格式，方便以后扩展
     var time = {

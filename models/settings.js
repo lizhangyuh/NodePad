@@ -1,8 +1,5 @@
 //公共设置
-var configs = require('../readConfigs.js'),
-    Db = require('mongodb').Db,
-    connection = require('mongodb').Connection,
-    Server = require('mongodb').Server;
+var mongodb = require('./db');
 
 function Settings(params) {
   this.blogname = params.blogname;
@@ -16,7 +13,6 @@ module.exports = Settings;
 
 //获取全局设置
 Settings.get = function(callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
 	//打开数据库
 	mongodb.open(function(err,db){
 		if(err){
@@ -41,7 +37,6 @@ Settings.get = function(callback){
 
 //保存全局设置
 Settings.prototype.save = function(callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
 	var settings = this;
 	//打开数据库
 	mongodb.open(function(err,db){

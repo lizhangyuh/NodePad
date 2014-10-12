@@ -1,8 +1,5 @@
 //用户登录
-var configs = require('../readConfigs.js'),
-    Db = require('mongodb').Db,
-    connection = require('mongodb').Connection,
-    Server = require('mongodb').Server;
+var mongodb = require('./db');
 
 function User(user){
 	this.name = user.name,
@@ -16,8 +13,6 @@ module.exports = User;
 
 //储存用户数据
 User.prototype.save = function(callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
-
 	//要存入的用户文档
 	var user = {
 		name:this.name,
@@ -51,7 +46,6 @@ User.prototype.save = function(callback){
 
 //获取用户数据
 User.get = function(query,callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
 	//打开数据库
 	mongodb.open(function(err,db){
 		if(err){
@@ -78,7 +72,6 @@ User.get = function(query,callback){
 
 //修改用户数据
 User.prototype.edit = function(username,type,callback){
-    var mongodb = new Db(new configs().db,new Server(new configs().host,connection.DEFAULT_PORT),{safe:true});
 	//要存入的用户文档
 	if(type == 'saveuser'){
         var user = {
