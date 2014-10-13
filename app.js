@@ -39,7 +39,8 @@ if (configs.db && configs.cookieSecret){
         key:configs.db,//cookie name
         cookie: {maxAge: 1000 * 60 * 60 * 24 * 3},//3 days
         store: new MongoStore({
-            db:configs.db
+            db:configs.db,
+            host:configs.host
         })
     }));
 }
