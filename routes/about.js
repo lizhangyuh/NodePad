@@ -10,7 +10,7 @@ module.exports = function(app,url) {
     //去掉url前斜杠
     var active = url.replace(/\//g,'');
   	//关于页面
-  	app.get('/about',function(req,res){
+  	app.get(url,function(req,res){
         init(function(settings) {
             Post.getAbout(function (err, about) {
                 if (err) {

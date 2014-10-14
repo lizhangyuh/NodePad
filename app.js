@@ -4,7 +4,7 @@
  */
 
 var express = require('express');
-
+var mongoose = require('mongoose');
 var configs = require('./configs.json');
 
 //引用路由文件
@@ -12,7 +12,6 @@ var index = require('./routes');
 var dashboard = require('./routes/dashboard');
 var blog = require('./routes/blog');
 var about = require('./routes/about');
-
 
 var http = require('http');
 var path = require('path');
@@ -39,7 +38,8 @@ if (configs.db && configs.cookieSecret){
         key:configs.db,//cookie name
         cookie: {maxAge: 1000 * 60 * 60 * 24 * 3},//3 days
         store: new MongoStore({
-            db:configs.db
+            db:configs.db,
+            host:configs.host
         })
     }));
 }

@@ -1,5 +1,14 @@
 //用户登录
-var mongodb = require('./db');
+var mongoose = require('./db');
+
+var usersSchema = mongoose.Schema({
+    name: String,
+    username:String,
+    pwd:String,
+    weibo:String,
+    email:String
+})
+var usersModel = mongoose.model('User', usersSchema);
 
 function User(user){
 	this.name = user.name,
@@ -21,52 +30,22 @@ User.prototype.save = function(callback){
 		weibo:this.weibo,
 		email:this.email
 	};
-	//打开数据库
-	mongodb.open(function(err,db){
-		if(err){
-			return callback(err);//返回错误信息
-		}
-		//读取users
-		db.collection('users',function(err,collection){
-			if(err){
-				mongodb.close();
-				return callback(err);
-			}
-			//插入数据
-			collection.insert(user,{safe:true},function(err,user){
-				mongodb.close();
-				if(err){
-					return callback(err);
-				}
-				callback(null,user[0]);//成功返回插入的数据
-			});
-		});
-	});
+	var newUser = usersModel(user);
+	newUser.save(function(err, user){
+        if(err){
+            return callback(err);
+        }
+        callback(null,user);
+    })
 };
 
 //获取用户数据
 User.get = function(query,callback){
-	//打开数据库
-	mongodb.open(function(err,db){
-		if(err){
-			return callback(err);//返回错误信息
-		}
-
-		//读取users
-		db.collection('users',function(err,collection){
-			if(err){
-				mongodb.close();
-				return callback(err);
-			}
-			//查找用户via query
-			collection.findOne(query,function(err,user){
-				mongodb.close();
-				if(err){
-					return callback(err);
-				}
-				callback(null,user);//成功，返回数据
-			});
-		});
+    usersModel.findOne(query, function (err, user) {
+        if (err) {
+            return callback(err);
+        }
+			callback(null,user);//成功，返回数据
 	});
 };
 
@@ -84,27 +63,10 @@ User.prototype.edit = function(username,type,callback){
             pwd:this.pwd
         };
     }
-
-	//打开数据库
-	mongodb.open(function(err,db){
-		if(err){
-			return callback(err);//返回错误信息
-		}
-
-		//读取users
-		db.collection('users',function(err,collection){
-			if(err){
-				mongodb.close();
-				return callback(err);
-			}
-			//更新用户信息
-			collection.update({username:username}, {$set: user}, function (err) {
-		        mongodb.close();
-		        if (err) {
-		          return callback(err);
-		        }
-		        callback(null);
-	      	});
-		});
-	});
+    usersModel.findOneAndUpdate({username:username},user,null,function(err){
+        if(err){
+            return callback(err);
+        }
+            callback(null);
+    })
 };

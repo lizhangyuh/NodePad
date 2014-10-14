@@ -12,7 +12,7 @@
         </script>
         <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
           <h1 class="page-header">编辑关于页面</h1>
-          <form class="form-horizontal"  id="edit-form" role="form" method="post" action="/dashboard/about/edit">
+          <form class="form-horizontal"  id="edit-form" role="form" method="post" action="/about/edit">
             <div class="form-group"><input type="text" <%if (about != undefined){%>value="<%= about.title%>"<%}%> class="form-control" id="title" name="title" placeholder="文章标题"></div>
             <!-- 上传图片 -->
             <div class="form-group">

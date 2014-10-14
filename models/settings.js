@@ -1,5 +1,14 @@
 //公共设置
-var mongodb = require('./db');
+var mongoose = require('./db');
+
+var settingsSchema = mongoose.Schema({
+    blogname:String,
+    intro:String,
+    starttime:String,
+    theme:String,
+    limit:Number
+})
+var settingsModel = mongoose.model('Settings', settingsSchema);
 
 function Settings(params) {
   this.blogname = params.blogname;
@@ -13,49 +22,23 @@ module.exports = Settings;
 
 //获取全局设置
 Settings.get = function(callback){
-	//打开数据库
-	mongodb.open(function(err,db){
-		if(err){
-			return callback(err);//返回错误信息
-		}
-		//读取settings
-		db.collection('settings',function(err,collection){
-			if(err){
-				mongodb.close();
-				return callback(err);
-			}
-			collection.findOne(function(err, settings){
-				mongodb.close();
-				if (err) {
-					return callback(err);
-				};
-				callback(null,settings);
-			});
-		});
-	});
+	settingsModel.findOne(function(err, settings){
+        if (err) {
+            return callback(err);
+        };
+        callback(null,settings);
+    })
 };
 
 //保存全局设置
 Settings.prototype.save = function(callback){
-	var settings = this;
-	//打开数据库
-	mongodb.open(function(err,db){
-		if(err){
-			return callback(err);//返回错误信息
-		}
-		//读取settings
-		db.collection('settings',function(err,collection){
-			if(err){
-				mongodb.close();
-				return callback(err);
-			}
-			collection.update({starttime:settings.starttime},{$set:settings},{upsert:true},function(err, settings){
-				mongodb.close();
-				if (err) {
-					return callback(err);
-				};
-				callback(null);
-			});
-		});
-	});
+	var newSettings = this;
+
+    settingsModel.findOneAndUpdate({starttime:newSettings.starttime},newSettings,{upsert:true},function(err){
+        if (err) {
+            console.log(err);
+            return callback("保存失败！");
+        };
+        callback(null);
+    });
 };

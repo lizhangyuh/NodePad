@@ -1,6 +1,6 @@
 //数据库连接
-var configs = require('../configs.json'),
-    Db = require('mongodb').Db,
-    connection = require('mongodb').Connection,
-    Server = require('mongodb').Server;
-module.exports = new Db(configs.db,new Server(configs.host,connection.DEFAULT_PORT),{safe:true});
+var mongoose = require('mongoose');
+var configs = require('../configs.json');
+
+module.exports = mongoose.connect('mongodb://'+configs.host+'/'+configs.db);
+

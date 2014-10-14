@@ -15,6 +15,7 @@
     "connect-mongo": "*",
     "connect-flash": "*",
     "markdown":"*",
-    "pinyin":"*"
+    "pinyin":"*",
+    "mongoose":"*"
   }
 }
