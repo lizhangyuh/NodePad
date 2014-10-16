@@ -4,6 +4,7 @@
  */
 var Post = require('../models/post.js');
 var markdown = require("markdown").markdown;
+var Comment = require('../models/comment.js');
 var User = require('../models/user.js');
 var init = require('../init');
 var formidable = require('formidable');
@@ -34,7 +35,7 @@ module.exports = function(app,url) {
                             }
                             //过滤markdown格式
                             posts.forEach(function (post) {
-                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*/g, '\r\n');
+                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
                             });
                             res.render(settings.theme+'/blog', {
                                 title: '博客',
@@ -80,7 +81,7 @@ module.exports = function(app,url) {
                             }
                             //过滤markdown格式
                             posts.forEach(function (post) {
-                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*/g, '\r\n');
+                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
                             });
                             res.render(settings.theme+'/blog', {
                                 title: '博客',
@@ -275,7 +276,7 @@ module.exports = function(app,url) {
                             }
                             //过滤markdown格式
                             posts.forEach(function (post) {
-                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*/g, '\r\n');
+                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
                             });
                             res.render(settings.theme+'/archives', {
                                 title: '文章归档',
@@ -329,7 +330,7 @@ module.exports = function(app,url) {
                             }
                             //过滤markdown格式
                             posts.forEach(function (post) {
-                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*/g, '\r\n');
+                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
                             });
                             res.render(settings.theme+'/tags', {
                                 title: tag + '标签下的文章',
@@ -349,6 +350,32 @@ module.exports = function(app,url) {
                     });
                 }
             });
+        });
+    });
+
+    //发表评论
+    app.post(url+'/comment/:pinyin', function (req,res) {
+        var date = new Date();
+        //存储各种时间格式，方便以后扩展
+        var time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
+                date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+        var commentobj={
+            name:req.body.name,
+            content:req.body.content,
+            time:time
+        }
+        var comment = new Comment({
+            pinyin:req.params.pinyin,
+            comment:commentobj
+        });
+
+        comment.save(function(err){
+            if(err){
+                req.flash('error', err);
+                return res.redirect('/err');
+            }
+            res.set('Content-Type', 'text/plain');
+            res.send('ok');
         });
     });
 
