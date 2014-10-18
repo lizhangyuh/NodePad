@@ -111,14 +111,13 @@ module.exports = function(app,url) {
                     if (err) {
                         req.flash('error', '没有此文章，或已删除！');
                         res.redirect('/err');
-                    } else {
+                    } else if(posts.length>0){
                         //加载归档数组
                         Post.getProperty("archiveTime", function (err, archiveTimes) {
                             if (err) {
                                 req.flash('error', err);
                                 return res.redirect('/err');
                             }
-                            ;
                             //加载标签数组
                             Post.getProperty("tags", function (err, tags) {
                                 if (err) {
@@ -148,6 +147,9 @@ module.exports = function(app,url) {
                                 });
                             });
                         });
+                    }else{
+                        req.flash('error','参数错误！');
+                        res.redirect('/err');
                     }
                 });
             });
