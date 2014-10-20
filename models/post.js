@@ -101,7 +101,7 @@ Post.get = function(query,page,limit,callback){
         }
         //查找用户via query
         page--;
-        postsModel.find(query).skip(page*limit).limit(limit).find(function(err, posts){
+        postsModel.find(query).skip(page*limit).limit(limit).sort({time:'desc'}).find(function(err, posts){
             if(err){
                 return callback(err);
             }
