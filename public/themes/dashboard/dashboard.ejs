@@ -34,13 +34,13 @@
             <%if (!(isFirst&&isLast)){%>
             <ul class="pagination pagination-sm">
               <% if (isFirst){%><li class="disabled"><a href="javascript:void(0);">&laquo;</a></li><% }else{%>
-                <li><a href="/dashboard/<%= page-1%>">&laquo;</a></li>
+                <li><a href="/dashboard/page/<%= page-1%>">&laquo;</a></li>
               <% }%>
               <% for (var i=1;i<=total;i++) {%>
                 <li <% if (page==i){ %>class="active" <% }%>><a href="/dashboard/page/<%= i%>"><%= i%></a></li>
               <% }%>
               <% if (isLast){%><li class="disabled"><a href="javascript:void(0);">&raquo;</a></li><% }else{%>
-                <li><a href="/dashboard/<%= page+1%>">&raquo;</a></li>
+                <li><a href="/dashboard/page/<%= page+1%>">&raquo;</a></li>
               <% }%>
             </ul>
             <% }%>

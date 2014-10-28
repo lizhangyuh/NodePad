@@ -4,7 +4,6 @@
  */
 
 var express = require('express');
-var mongoose = require('mongoose');
 var configs = require('./configs.json');
 
 //引用路由文件
@@ -53,7 +52,7 @@ if ('development' == app.get('env')) {
 }
 
 //绑定路由
-index(app,express, '/');
+index(app, '/');
 dashboard(app, '/dashboard');
 blog(app, '/blog');
 about(app, '/about');

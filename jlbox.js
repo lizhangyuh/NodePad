@@ -58,6 +58,7 @@ var exec = require('child_process').exec;
                         date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) ,
                     limit:5
                 });
+
                 settings.save(function(err) {
                     if (err) {
                         return console.log('安装失败，创建全局设置不成功~');

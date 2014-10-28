@@ -21,7 +21,8 @@ module.exports = function(app,url) {
                 } else {
                     res.render('dashboard/dashboard', {
                         title: '文章列表',
-                        posts: posts, active: 'blog',
+                        posts: posts,
+                        active: 'blog',
                         page: 1,
                         total: Math.ceil(total / limit),
                         isFirst: true,

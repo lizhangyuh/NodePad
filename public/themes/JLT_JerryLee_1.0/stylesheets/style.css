@@ -325,3 +325,38 @@ textarea:-moz-placeholder {
 .pro-posts-body{
     border:none!important;
 }
+
+.comment-box{
+    resize: none;
+    background: #666;
+    border:none;
+    color:#eee;
+}
+
+.comment-icon{
+    background: #666;
+    /*padding: 5px 0;*/
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-size:32px ;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #ccc;
+}
+
+.comment-time{
+    color: #666;
+    font-size: 13px;
+}
+
+.comment-content{
+    color: #999;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.media{
+    margin: 15px 0;
+}

@@ -1,4 +1,4 @@
-//用户登录
+//用户
 var mongoose = require('./db');
 
 var usersSchema = mongoose.Schema({
@@ -51,8 +51,8 @@ User.get = function(query,callback){
 
 //修改用户数据
 User.prototype.edit = function(username,type,callback){
-	//要存入的用户文档
-	if(type == 'saveuser'){
+    //要存入的用户文档
+    if(type == 'saveuser'){
         var user = {
             name:this.name,
             weibo:this.weibo,
@@ -67,6 +67,6 @@ User.prototype.edit = function(username,type,callback){
         if(err){
             return callback(err);
         }
-            callback(null);
+        callback(null);
     })
 };

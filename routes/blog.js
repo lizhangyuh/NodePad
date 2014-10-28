@@ -4,7 +4,7 @@
  */
 var Post = require('../models/post.js');
 var markdown = require("markdown").markdown;
-// var Comment = require('../models/comment.js');
+var Comment = require('../models/comment.js');
 var User = require('../models/user.js');
 var init = require('../init');
 var formidable = require('formidable');
@@ -356,30 +356,42 @@ module.exports = function(app,url) {
     });
 
     //发表评论
-    // app.post(url+'/comment/:pinyin', function (req,res) {
-    //     var date = new Date();
-    //     //存储各种时间格式，方便以后扩展
-    //     var time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
-    //             date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
-    //     var commentobj={
-    //         name:req.body.name,
-    //         content:req.body.content,
-    //         time:time
-    //     }
-    //     var comment = new Comment({
-    //         pinyin:req.params.pinyin,
-    //         comment:commentobj
-    //     });
+    app.post('/comment/:pinyin', function (req,res) {
+        var name = setContent(req.body.name);
+        var content = setContent(req.body.content);
+        if(name=='' || name == undefined){
+            req.flash('error', '壮士，请留下姓名！');
+            return res.redirect('/err');
+        }
+        if(content==''|| content == undefined ){
+            req.flash('error', '你到底想说什么？');
+            return res.redirect('/err');
+        }
+         var date = new Date();
+        var pinyin = req.params.pinyin;
+         //存储各种时间格式，方便以后扩展
+         var time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
+                 date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+         var commentobj={
+             name:name,
+             content:content,
+             time:time
+         }
+         var comment = new Comment({
+             pinyin:pinyin,
+             comment:commentobj
+         });
 
-    //     comment.save(function(err){
-    //         if(err){
-    //             req.flash('error', err);
-    //             return res.redirect('/err');
-    //         }
-    //         res.set('Content-Type', 'text/plain');
-    //         res.send('ok');
-    //     });
-    // });
+         comment.save(function(err){
+             if(err){
+                 req.flash('error', err);
+                 return res.redirect('/err');
+             }
+//             res.set('Content-Type', 'text/plain');
+//             res.send('ok');
+                res.redirect('/blog/post/'+pinyin);
+         });
+    });
 
     //上传图片
     app.post(url+'/upload',function(req, res) {
@@ -437,5 +449,13 @@ module.exports = function(app,url) {
             res.redirect('/err');
         }
         next();
+    }
+
+    //过滤html并且去除多余空格换行
+    function setContent(str) {
+        str = str.replace(/<\/?[^>]*>/g,''); //去除HTML tag
+        str.value = str.replace(/[ | ]*\n/g,'\n'); //去除行尾空白
+        str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
+        return str;
     }
 }

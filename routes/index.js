@@ -6,7 +6,7 @@ var User = require('../models/user.js');
 var init = require('../init');
 var configs = require('../configs.json');
 
-module.exports = function (app, express, url) {
+module.exports = function (app, url) {
     //去掉url前斜杠
     var active = url.replace(/\//g, '');
     //首页
@@ -74,7 +74,23 @@ module.exports = function (app, express, url) {
                     req.flash('error', err);
                     return res.redirect('/err');//注册失败
                 }
-                res.redirect('/login');//注册成功后跳转登录页面
+
+                var Post = require('../models/post.js');
+                //新建第一篇博文
+                var post = new Post({
+                    title:'我的第一篇博文',
+                    post:'欢迎使用jlBox，这是一个使用Markdown写作的小巧的开源博客框架，希望你能喜欢！',
+                    author:user.username,
+                    draft:'0',
+                    tags:'jlBox'
+                });
+                post.save(function (err) {
+                    if (err) {
+                        req.flash('error', err);
+                        return res.redirect('/err');
+                    }
+                    res.redirect('/login');//注册成功后跳转登录页面
+                });
             });
         });
     });
@@ -95,7 +111,6 @@ module.exports = function (app, express, url) {
 
     //执行登录
     app.post('/login', function (req, res) {
-        // console.log(req.body.username);
         User.get({username: req.body.username}, function (err, user) {
             if (!user) {
                 req.flash('error', '用户名不存在！');

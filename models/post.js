@@ -11,7 +11,8 @@ var postsSchema = mongoose.Schema({
     author:String,
     draft:String,
     tags:Array,
-    archiveTime:String
+    archiveTime:String,
+    comments:Array
 })
 
 var aboutSchema = mongoose.Schema({
@@ -49,7 +50,7 @@ Post.prototype.save = function(callback){
 	//要存入数据库的文档
 	var post = {
 	  title: this.title,
-	  pinyin: pinyin(this.title).join("-"),
+	  pinyin: pinyin(this.title,{style: pinyin.STYLE_NORMAL}).join("-"),
 	  time: time,
       edittime:time,
 	  draft:this.draft,
@@ -130,13 +131,13 @@ Post.prototype.edit = function(id,callback){
 	  // year : date.getFullYear(),
 	  // month : date.getFullYear() + "-" + (date.getMonth() + 1),
 	  // day : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
-	  minute : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + 
-	  date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) 
+	  minute : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
+	  date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
 	}
 	//要存入数据库的文档
 	var post = {
 	  title: this.title,
-	  pinyin: pinyin(this.title).join("-"),
+	  pinyin: pinyin(this.title,{style: pinyin.STYLE_NORMAL}).join("-"),
 	  edittime: time,
 	  draft:this.draft,
 	  tags:this.tags,
@@ -188,7 +189,7 @@ Post.prototype.editAbout = function(id,callback){
     //要存入数据库的文档
     var about = {
         title: this.title,
-        pinyin: pinyin(this.title).join("-"),
+        pinyin: pinyin(this.title,{style: pinyin.STYLE_NORMAL}).join("-"),
         edittime: time,
         post: this.post
     };
