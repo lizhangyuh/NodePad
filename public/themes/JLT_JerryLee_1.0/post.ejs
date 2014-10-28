@@ -90,26 +90,28 @@
                             <%- post.post %>
                         </div>
                         <br>
-                        <form id="comment-form" role="form" method="post" action="/comment/<%= post.pinyin%>">
-                            <hr style="border-top:1px solid #444">
-                            <div class="form-group">
-                                <label for="name">评论：</label>
-                                <div class="col-sm-13">
-                                    <input type="text" class="form-control comment-box" id="name" name="name" placeholder="昵称"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-13">
-                                    <textarea class="form-control comment-box" id="content" name="content" rows="5" placeholder="留言仅支持纯文本..."></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="button" class="visible-md visible-lg comment-save btn btn-primary pull-right" onclick="comment();notempty();" value="发 表"/>
-                                <input type="submit" class="visible-sm visible-xs btn btn-primary pull-right" value="发 表"/>
-                             </div>
-                        </form>
                         <div class="clearfix"></div>
-                        <%post.comments.forEach(function(comment,index){%>
+                        <div class="blog-comment">
+                            <form id="comment-form" role="form" method="post" action="/comment/<%= post.pinyin%>">
+                                <hr style="border-top:1px solid #444">
+                                <div class="form-group">
+                                    <label for="name">评论：</label>
+                                    <div class="col-sm-13">
+                                        <input type="text" class="form-control comment-box" id="name" name="name" placeholder="昵称"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-13">
+                                        <textarea class="form-control comment-box" id="content" name="content" rows="5" placeholder="留言仅支持纯文本..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" class="visible-md visible-lg comment-save btn btn-primary pull-right" onclick="comment();notempty();" value="发 表"/>
+                                    <input type="submit" class="visible-sm visible-xs btn btn-primary pull-right" value="发 表"/>
+                                </div>
+                            </form>
+                            <div class="clearfix"></div>
+                            <%post.comments.forEach(function(comment,index){%>
                             <div class="media">
                                 <span class="media-object comment-icon pull-left"><%-: comment.name|truncate:1 %></span>
                                 <div class="media-body">
@@ -117,7 +119,8 @@
                                     <p class="comment-content"><%= comment.content%></p>
                                 </div>
                             </div>
-                        <%})%>
+                            <%})%>
+                        </div>
                     </div>
                     <div class="col-sm-2 pull-right" style="padding-left: 30px;">
                         <p><a href="javascript:history.go(-1);">&laquo;返回</a></p>
