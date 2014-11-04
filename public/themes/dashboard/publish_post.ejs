@@ -6,9 +6,46 @@
         <script type="text/javascript" src="/themes/dashboard/javascripts/upload.js"></script>
 
         <script type="text/javascript">
+
           function publish(draft){
             $('#draft').val(draft);
             $('#publish-form').submit();
+          }
+
+          function addlink(){
+              if(!$('#urltext').val()||!$('#url').val()||$('#url').val()=="http://"){
+                  clearlink();
+                  alert('输入错误！');
+                  return false;
+              }
+              $('#post').val($('#post').val()+"["+$('#urltext').val()+"]"+"("+$('#url').val()+")");
+              clearlink();
+          }
+
+          function  clearlink(){
+              $('#urltext').val('link');
+              $('#url').val('');
+          }
+
+          function scrollListen(){
+              $('#post').scroll(function(){
+                  $('#preview').scrollTop($('#post').scrollTop());
+              });
+              $('#post').keyup(function(){
+                  $('#preview').scrollTop($('#post').scrollTop());
+              });
+          }
+          function hidePreview(){
+              $('.preview').hide();
+              $('#editor').css('width','100%');
+              $('.show-preview').show();
+              $('.hide-preview').hide();
+          }
+          function showPreview(){
+              $('.preview').show();
+              $('#editor').css('width','50%');
+              $('.hide-preview').show();
+              $('.show-preview').hide();
           }
         </script>
         <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
@@ -20,11 +57,28 @@
             <!-- 添加标签 -->
             <div class="form-group"><input type="text" class="form-control" id="tags" name="tags" placeholder="添加标签，多个用英文逗号隔开"></div>
             <!-- 上传图片 -->
+            <!--<div class="form-group">-->
+              <!--<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target=".bs-upload-modal-sm">上传图片</button>-->
+            <!--</div>-->
             <div class="form-group">
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target=".bs-upload-modal-sm">上传图片</button>
+                <div id="editor">
+                    <div id="toolbar" class="wmd-toolbar"></div>
+                    <textarea id="post" name="post" placeholder="文章正文" class="wmd-input form-control" rows="30" cols="80"></textarea>
+                    <!--<div id="tools">-->
+                        <!--<button id="highlightCode" class="toolbutton">Highlight Code</button>-->
+                        <!--<button id="selectall" class="toolbutton" onclick="selectAll();">Select all preview text</button>-->
+                        <!--<button id="tohtml" class="toolbutton" onclick="toHtml();">Print</button>-->
+                        <!--&lt;!&ndash; <button id="copyall" class="toolbutton" onclick="copyAll();">Copy to clipboard</button> &ndash;&gt;-->
+                    <!--</div>-->
+                </div>
+                <div class="preview hidden-xs hidden-sm" style="display: none">
+                    <p style="margin-top:15px;font-size: 21px">文章预览：</p>
+                    <div id="preview" class="wmd-preview"></div>
+                </div>
             </div>
-            <div class="form-group"><textarea class="form-control" id="post" name="post" rows="18" placeholder="文章正文"></textarea></div>
             <div class="form-group">
+              <button type="button" class="show-preview btn btn-success hidden-xs hidden-sm" onclick="showPreview()">文章预览</button>
+              <button type="button" style="display: none" class="hide-preview btn btn-success hidden-xs hidden-sm" onclick="hidePreview()">隐藏预览</button>
               <button type="button" class="btn btn-warning" onclick="publish(1);">存草稿</button>
               <button type="button" class="btn btn-primary" onclick="publish(0);">发 布</button>
             </div>
@@ -34,28 +88,79 @@
     </div>
     <!-- 上传图片 -->
      <div class="modal fade bs-upload-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
           <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+                  </div>
+                  <div class="modal-body" style="padding:-10px;">
+                      <p>
+                      <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="/blog/upload">
+                          <label for="file">选择图片：</label>
+                          <input id="fileupload" name="files" type="file" multiple="multiple"/><br>
+                          <div id="progress" class="progress"><div class="progress-bar progress-bar-success"  aria-valuemin="0" aria-valuemax="100"></div></div><div id="files" class="files"></div>
+                      </form>
+                      </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id="addurl" class="btn btn-default" data-dismiss="modal">关 闭</button>
+                   <!--  <button type="button" onclick="addurl();" class="btn btn-primary">上 传</button> -->
+                  </div>
+                </div>
               </div>
-              <div class="modal-body" style="padding:-10px;">
-                  <p>
-                  <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="/blog/upload">
-                      <label for="file">选择图片：</label>
-                      <input id="fileupload" name="files" type="file" multiple="multiple"/><br>
-                      <div id="progress" class="progress"><div class="progress-bar progress-bar-success"  aria-valuemin="0" aria-valuemax="100"></div></div><div id="files" class="files"></div>
-                  </form> 
-                  </p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" id="addurl" class="btn btn-default" data-dismiss="modal">关 闭</button>
-               <!--  <button type="button" onclick="addurl();" class="btn btn-primary">上 传</button> -->
-              </div>
-            </div>
           </div>
-      </div>
+     </div>
+    <!-- 添加链接 -->
+    <div class="modal fade bs-addlink-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">添加超链接</h4>
+                    </div>
+                    <div class="modal-body" style="padding:-10px;">
+                        <p>
+                            <label for="file">输入URL：</label>
+                            <input id="url" class="form-control" type="text" value=""/><br>
+                            <label for="file">输入显示文字：</label>
+                            <input id="urltext" class="form-control" type="text" value="link"/><br>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addlink()">添加至文章</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearlink()">关 闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- jQuery and Syntax Highlight -->
+    <script type="text/javascript" src="/themes/dashboard/javascripts/jquery.syntaxhighlighter.min.js"></script>
+
+    <!-- WMD -->
+    <script type="text/javascript" src="/themes/dashboard/javascripts/showdown.js"></script>
+    <script type="text/javascript" src="/themes/dashboard/javascripts/wmd.js"></script>
+    <!-- jQuery listener for syntax highlight -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#highlightCode").click(function(){
+                $.SyntaxHighlighter.init({
+                    'lineNumbers': false,
+                    'debug': true
+                });
+            });
+            new WMD("post", "toolbar", { preview: "preview" });
+
+            $("#url").blur(function(){
+                var old = $(this).val().replace('http://', '');
+                $(this).val('http://'+old);
+            });
+        });
+
+        scrollListen();
+    </script>
+
     <%- include dash_footer %>

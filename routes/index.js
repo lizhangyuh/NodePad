@@ -79,7 +79,7 @@ module.exports = function (app, url) {
                 //新建第一篇博文
                 var post = new Post({
                     title:'我的第一篇博文',
-                    post:'欢迎使用jlBox，这是一个使用Markdown写作的小巧的开源博客框架，希望你能喜欢！',
+                    post:'欢迎使用NodePad，这是一个使用Markdown写作的小巧的开源博客框架，支持自定义主题哦~希望你能喜欢！',
                     username:username,
                     draft:'0',
                     tags:'jlBox'

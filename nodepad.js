@@ -5,7 +5,7 @@
 
 var exec = require('child_process').exec;
 
-    console.log('欢迎使用jlBox！');
+    console.log('欢迎使用NodePad！');
 
     var fs = require('fs');
     var data=fs.readFileSync('configs.json','utf-8');
@@ -14,7 +14,7 @@ var exec = require('child_process').exec;
     //判断是否已安装
     if(!data){
         console.log('    ');
-        console.log('你尚未安装jlBox，现在开始安装！');
+        console.log('你尚未安装NodePad，现在开始安装！');
         if(!process.argv[2]){return console.log('请输入数据库名称！');}
         if(!process.argv[3]){return console.log('请输入数据库地址！');}
         if(!process.argv[4]){return console.log('请输入数cookie密钥！');}
@@ -51,8 +51,8 @@ var exec = require('child_process').exec;
 
                 var date = new Date();
                 var settings = new Settings({
-                    intro:'欢迎使用jlBox博客',
-                    blogname:'一个jlBox博客',
+                    intro:'欢迎使用 NodePad 博客',
+                    blogname:'NodePad',
                     themes:'JLT_JerryLee_1.0',
                     starttime:date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
                         date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) ,
@@ -67,14 +67,14 @@ var exec = require('child_process').exec;
                     console.log('安装完成!正在启动程序......');
                     start();
                     console.log('================================');
-                    console.log('jlBox已启动！');
+                    console.log('NodePad已启动！');
                 });
             });
         });
     }else {
         start();
         console.log('================================');
-        console.log('jlBox已启动！');
+        console.log('NodePad已启动！');
     }
 
     function start(){

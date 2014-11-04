@@ -1,6 +1,6 @@
 <div class="masthead clearfix" <% if (active!="" &&!(active =="about"&&!about)){%>style="position:relative"<%}%>>
     <div class="inner">
-        <h3 class="masthead-brand"><%= settings.blogname%></h3>
+        <h3 class="masthead-brand"><a href="/" ><%= settings.blogname%></a></h3>
         <ul class="nav masthead-nav">
             <li <% if (active==""){%>class="active"<%}%>><a href="/">主页</a></li>
             <li <% if (active=="blog"){%>class="active"<%}%>><a href="/blog">博客</a></li>

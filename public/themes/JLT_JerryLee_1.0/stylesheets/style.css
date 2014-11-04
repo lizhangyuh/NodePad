@@ -58,6 +58,10 @@ body {
     padding: 30px 15px;
 }
 
+.masthead-brand a:hover{
+    text-decoration: none;
+    color: #ddd;
+}
 
 /*
  * Header

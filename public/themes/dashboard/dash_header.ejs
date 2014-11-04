@@ -11,7 +11,9 @@
     <title><%= title%> | <%= settings.blogname%></title>
 
     <link rel="stylesheet" type="text/css" href="/themes/dashboard/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/themes/dashboard/stylesheets/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/themes/dashboard/stylesheets/dash_style.css" />
+      <link type="text/css" rel="stylesheet" href="/themes/dashboard/stylesheets/wmd.css"/>
 
     <script type="text/javascript" src="/themes/dashboard/javascripts/jquery-1.11.1.min.js"></script>
 
@@ -52,9 +54,9 @@
       <div class="row">
         <div class="col-sm-2 col-md-1 sidebar">
           <ul class="nav nav-sidebar">
-            <li <% if (active=='blog') {%>class="active"<% }%>><a href="/dashboard">文章</a></li>
-            <li <% if (active=='about') {%>class="active"<% }%>><a href="/about/edit">关于</a></li>
-            <li <% if (active=='settings') {%>class="active"<% }%>><a href="/dashboard/settings">设置</a></li>
+            <li <% if (active=='blog') {%>class="active"<% }%>><a href="/dashboard"><i class="icon-book"></i> 文章</a></li>
+            <li <% if (active=='about') {%>class="active"<% }%>><a href="/about/edit"><i class=" icon-info-sign"></i> 关于</a></li>
+            <li <% if (active=='settings') {%>class="active"<% }%>><a href="/dashboard/settings"><i class=" icon-cog"></i> 设置</a></li>
           </ul>
           <p class="bottom-copy">&copy;2014 JerryLee</p>
         </div>

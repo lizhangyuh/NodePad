@@ -17,7 +17,7 @@
         }else if($('#content').val() == ''){
             alert('你到底想说什么？');
         }else{
-            $.post('http://localhost:3000/comment/<%= post.pinyin%>',$('#comment-form').serialize(),function(data) {
+            $.post('../../comment/<%= post.pinyin%>',$('#comment-form').serialize(),function(data) {
                 if(data=='noname') {
                     alert('');
                 }else if(data=='nocontent') {
@@ -95,7 +95,7 @@
                             <form id="comment-form" role="form" method="post" action="/comment/<%= post.pinyin%>">
                                 <hr style="border-top:1px solid #444">
                                 <div class="form-group">
-                                    <label for="name">评论：</label>
+                                    <label for="name"><i class="glyphicon glyphicon-comment"></i>&nbsp;&nbsp;评论：</label>
                                     <div class="col-sm-13">
                                         <input type="text" class="form-control comment-box" id="name" name="name" placeholder="昵称"></textarea>
                                     </div>

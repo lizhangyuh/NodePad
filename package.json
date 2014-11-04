@@ -1,10 +1,10 @@
 {
-  "name": "jlBox",
+  "name": "NodePad",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node jlbox.js",
-    "jlbox": "node jlbox.js"
+    "start": "node nodepad.js",
+    "nodepad": "node bodepad.js"
 
   },
   "dependencies": {

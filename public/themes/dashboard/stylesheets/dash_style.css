@@ -148,3 +148,57 @@ textarea{
 .input-group{
     margin: 5px 0;
 }
+
+#editor{
+    width: 100%;
+    float: left;
+}
+
+.preview{
+    height:650px;
+    margin-left:53%;
+    margin-top: 5px;
+    /*height: 250px;*/
+    /*padding: 0 30px;*/
+    /*border: 1px solid #ccc;*/
+    /*background: #fff;*/
+    /*position: fixed;*/
+    /*z-index: 99999;*/
+    /*top:5px;*/
+    /*right:0;*/
+    /*margin: 0 20px;*/
+}
+
+#preview{
+    border: 1px solid #ccc;
+    height:615px;
+    /*height:200px;*/
+    border-radius: 4px;
+    padding: 5px 15px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+}
+
+#preview img{
+    width: 85%;
+}
+
+ /*小屏幕（平板，大于等于 768px） */
+@media (min-width: 768px) {
+    #editor{
+        width: 100%;
+        float: left;
+    }
+
+}
+
+ /*中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+    #editor{
+        width: 100%;
+        float: left;
+    }
+
+}
