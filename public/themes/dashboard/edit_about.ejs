@@ -50,10 +50,6 @@
           <h1 class="page-header">编辑关于页面</h1>
           <form class="form-horizontal"  id="edit-form" role="form" method="post" action="/about/edit">
             <div class="form-group"><input type="text" <%if (about != undefined){%>value="<%= about.title%>"<%}%> class="form-control" id="title" name="title" placeholder="文章标题"></div>
-            <!-- 上传图片 -->
-            <div class="form-group">
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target=".bs-upload-modal-sm">上传图片</button>
-            </div>
             <%if (about != undefined){%><input type="hidden" class="form-control" id="id" name="id" value="<%= about._id%>" ><%}%>
               <div class="form-group">
                   <div id="editor">

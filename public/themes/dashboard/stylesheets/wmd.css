@@ -3,6 +3,7 @@
     display: block;
     clear: left;
     float: left;
+    height: 615px!important;
 }
 
 div.wmd-toolbar {
