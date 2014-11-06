@@ -143,6 +143,7 @@ module.exports = function (app, url) {
                     title: '提示',
                     success: req.flash('success').toString(),
                     error: req.flash('error').toString(),
+                    user: req.session.user,
                     settings:settings
                 });
         });
