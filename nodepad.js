@@ -71,7 +71,7 @@ var spawn = require('child_process').spawn;
                     console.log('安装完成!正在启动程序......');
                     start();
                     console.log('================================');
-                    console.log('NodePad已启动！');
+                    console.log('NodePad启动中......');
                 });
             });
         });
@@ -79,7 +79,7 @@ var spawn = require('child_process').spawn;
     }else {
         start();
         console.log('================================');
-        console.log('NodePad已启动！');
+        console.log('NodePad启动中......');
     }
 
     function start(){

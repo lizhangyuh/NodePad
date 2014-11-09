@@ -59,5 +59,5 @@ blog(app, '/blog');
 about(app, '/about');
 
 http.createServer(app).listen(app.get('port'), function(){
-    console.log('端口:'+app.get('port'));
+    console.log('NodePad启动成功！端口:'+app.get('port'));
 });
