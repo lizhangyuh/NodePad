@@ -1,0 +1,51 @@
+<%- include header %>
+<%- include menu %>
+<div class="container allblog">
+    <div class="row blog-wrapper">
+        <% posts.forEach(function (post, index) { %>
+        <div class="blog-each">
+            <h3><a href="/blog/post/<%= post.pinyin%>" target="_blank" class="blog-title"><%= post.title%></a></h3>
+
+            <!--<div class="blog-img"><img-->
+                        <!--src="http://lingyong-me.qiniudn.com/QQ20141030-1@2x.png%202014-10-30%2011:21-px1366"></div>-->
+            <div class="blog-content">
+                <p>
+                    <%- post.post %>
+                </p>
+            </div>
+            <div class="blog-content-footer">
+                <span style="color: #428bca">发布于 <%= post.time.minute%></span>
+
+                <span class="pull-right">
+
+                    <% post.tags.forEach(function (tag, index) {%>
+                    <% if (index == 0&& tag != ''){%>
+                    &nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-tags"></i>&nbsp;
+                    <% }%>
+                    <% if (index != post.tags.length-1){%>
+                    <a href="/blog/tags/<%= tag%>"><%= tag%></a> ,
+                    <% }else{ %>
+                    <a href="/blog/tags/<%= tag%>"><%= tag%></a>
+                    <% }%>
+                    <% })%>
+                </span>
+            </div>
+        </div>
+        <%})%>
+    </div>
+    <div class="row ajax text-center">
+        <p>
+            <% if (!isFirst){%>
+            <a class="pull-left" href="/blog/page/<%= page-1 %>">&laquo;上一页</a>
+            <% }%>
+            <% if (!isLast){%>
+            <a class="pull-right" href="/blog/page/<%= page+1 %>">下一页 &raquo;</a>
+            <% }%>
+        </p>
+    </div>
+</div>
+<%- include footer%>
+<script>$("#nav-blog").addClass("active")</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
     运行命令：node jlbox
  */
 
-var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 
     console.log('欢迎使用NodePad！');
 
@@ -25,14 +25,17 @@ var exec = require('child_process').exec;
 
         //检查modules
         console.log('开始下载modules，这可能需要几分钟............');
-        exec('npm install',function (error, stdout, stderr) {
-            console.log(stdout);
-            if(stderr){
-                console.log('stderr: ' + stderr);
-            }
-            if (error !== null) {
-                console.log(error);
-            }
+        var install = spawn('npm',['install']);
+        install.stdout.on('data', function (data) {
+            console.log('安装信息: ' + data);
+        });
+
+        install.stderr.on('data', function (data) {
+            console.log('错误信息: ' + data);
+        });
+
+        install.on('close', function (code) {
+
             console.log('所有modules已安装！');
 
             //数据库配置写入configs.json
@@ -53,7 +56,8 @@ var exec = require('child_process').exec;
                 var settings = new Settings({
                     intro:'欢迎使用 NodePad 博客',
                     blogname:'NodePad',
-                    themes:'JLT_JerryLee_1.0',
+                    subtitle:'一个简单好用的轻博客',
+                    themes:'NPT_JerryLee_1.0',
                     starttime:date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
                         date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) ,
                     limit:5
@@ -71,6 +75,7 @@ var exec = require('child_process').exec;
                 });
             });
         });
+
     }else {
         start();
         console.log('================================');
@@ -78,15 +83,18 @@ var exec = require('child_process').exec;
     }
 
     function start(){
-        exec('node app.js',
-            function (error, stdout, stderr) {
-                console.log('stdout: ' + stdout);
-                console.log('stderr: ' + stderr);
-                if (error !== null) {
-                    console.log(error);
-                }
-            }
-        );
+        var run = spawn('node',['app.js']);
+        run.stdout.on('data', function (data) {
+            console.log('输出信息: ' + data);
+        });
+
+        run.stderr.on('data', function (data) {
+            console.log('错误信息: ' + data);
+        });
+
+        run.on('close', function (code) {
+            console.log('child process exited with code ' + code);
+        });
     }
 
 

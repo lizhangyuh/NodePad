@@ -1,0 +1,29 @@
+<%- include header %>
+<%- include menu %>
+
+<div id="view" class="pager">
+    <div class="months container">
+        <div class="month col-lg-12">
+            <div class="month-title pull-left col-xs-12 col-md-2"><h2 class="pull-left"><%= archive%></h2>
+
+                <h2 class="count pull-right"><%= total%> Posts</h2></div>
+            <div class="blogs pull-right col-xs-12 col-md-10">
+                <% posts.forEach(function (post, index) { %>
+                <div class="blog"><a href="/blog/post/<%= post.pinyin%>" target="_blank" class="wrap"><h2><%= post.title%></h2>
+
+                        <div class="blog-content">
+                            <%-: post.textpost|truncate:100 %>
+                        </div>
+                        <div class="comment-box hidden"><span class="blog-time"><%-: post.time.minute|truncate:10%></span></div>
+                    </a></div>
+                <%})%>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include footer%>
+<script>$("#nav-view").addClass("active")</script>
+<script src="/themes/<%= settings.theme%>/javascripts/jquery.grid-a-licious.min.js"></script>
+<script src="/themes/<%= settings.theme%>/javascripts/view.js"></script>
+</body>
+</html>

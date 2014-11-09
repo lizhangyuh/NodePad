@@ -1,0 +1,19 @@
+<%- include login_header %>
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+            <div class="login-box container">
+                <% if (success) { %>
+                <p><%= success %></p>
+                <% } %>
+                <% if (error) { %>
+                <p><%= error %> </p>
+                <% } %>
+
+            </div>
+
+<%- include login_footer %>
+
+

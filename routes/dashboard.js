@@ -72,7 +72,7 @@ module.exports = function(app,url) {
             }
             var themes = new Array();
             files.forEach(function(file,index){
-                if (file.length>4 && file.substr(0,4) == "JLT_" ){
+                if (file.length>4 && file.substr(0,4) == "NPT_" ){
                     themes.push(file);
                     console.log(file);
                 }
@@ -97,6 +97,7 @@ module.exports = function(app,url) {
 			starttime:req.body.starttime,
 			limit:req.body.limit,
             blogname:req.body.blogname,
+            subtitle:req.body.subtitle,
             themes:req.body.themes
 		});
 		settings.save(function(err){

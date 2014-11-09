@@ -1,0 +1,42 @@
+<%- include header %>
+<%- include menu%>
+<!--.bg(data-bg=''+cover.img.original)-->
+<div class="cover-index bg">
+    <div class="cover-touming">
+        <div class="cover-wrapper">
+            <div class="logo"><a href="/about" class="img"><h1 id="blogname"><%= settings.blogname%></h1></a>
+                <!--<img src="images/lingyong.png">-->
+                <h2 class="faith"><%= settings.intro%></h2>
+            </div>
+            <div class="cover-index-content">
+                <div class="content">
+                    <p><%= settings.subtitle%></p>
+                </div>
+                <a href="javascript:void(0)" class="index-down-icon cover-title blogIndex" onclick="toIndex()">
+                    <i class="fa fa-angle-double-down"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blog-index">
+    <div class="blog-wrapper">
+        <% posts.forEach(function (post, index) { %>
+        <div class="header"><a href="/blog/post/<%= post.pinyin%>" target="_blank"><h2><%= post.title%></h2></a></div>
+        <div class="blog-index-content">
+            <!--<div class="blog-img">-->
+                <!--<img src="http://lingyong-me.qiniudn.com/QQ20141030-1@2x.png%202014-10-30%2011:21-px1366"></div>-->
+            <div class="content">
+                <p>
+                    <%- post.post%>
+                </p>
+            </div>
+        </div>
+        <%})%>
+    </div>
+</div>
+<%- include footer%>
+<script src="/themes/<%= settings.theme%>/javascripts/index.js"></script>
+</body>
+</html>

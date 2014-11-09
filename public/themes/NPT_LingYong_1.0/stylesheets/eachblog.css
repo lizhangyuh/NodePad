@@ -1,0 +1,205 @@
+/*@import "../amd/markdown.css";*/
+/*@import "../include/highlight/xcode.css";*/
+@media screen and (min-width: 768px) {
+  #mynav {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px groove rgba(0, 0, 0, 0.05);
+  }
+  #mynav li > a {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  #mynav li > a:hover {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+#mynav .navbar-brand {
+    color: #4EA9F7 !important;
+    font-weight: normal;
+}
+#mynav .navbar-brand:hover {
+    color: #2a6496 !important;
+}
+#mynav .navbar-brand {
+    font-weight: bold;
+}
+#tree_1_span {
+  font-size: 16px;
+  padding: 5px;
+  color: #357fbe !important;
+}
+#tree {
+  list-style: none !important;
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: 30px 40px;
+}
+#tree a {
+  display: inline-block !important;
+  outline: none !important;
+}
+#tree a:hover {
+  text-decoration: none !important;
+}
+#tree li {
+  outline: none !important;
+}
+#tree li:hover {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+#tree li:hover > a > span {
+  color: rgba(0, 0, 0, 0.8);
+}
+#tree li a span {
+  color: rgba(0, 0, 0, 0.5);
+}
+#tree ul {
+  margin: 5px;
+  list-style: none !important;
+}
+.ztree li span.button.switch,
+li span.button.switch,
+li span.button.switch {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 15px;
+  font-size: 20px !important;
+  padding: 5px;
+  width: 25px;
+}
+.ztree li span.button.switch:hover,
+li span.button.switch:hover,
+li span.button.switch:hover {
+  color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.03);
+}
+.ztree li span.button.switch.center_open:before,
+span.button.switch.center_open:before,
+span.button.switch.center_open:before,
+span.button.switch.bottom_open:before,
+span.button.switch.bottom_open:before,
+span.button.switch.bottom_open:before {
+  content: "\f107";
+  line-height: 15px !important;
+}
+.ztree li span.button.switch.center_close:before,
+span.button.switch.center_close:before,
+span.button.switch.center_close:before,
+span.button.switch.bottom_close:before,
+span.button.switch.bottom_close:before,
+span.button.switch.bottom_close:before {
+  content: "\f105";
+  line-height: 15px !important;
+}
+body {
+  background-color: #fff!important;
+}
+body .eachblog {
+  margin-top: 50px;
+  max-width: 900px;
+  padding: 10px;
+  line-height: 1.9em;
+}
+body .eachblog .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+body .eachblog img {
+  max-width: 100%;
+  margin: 20px 0;
+}
+body .eachblog .blog-head .time-and-comment {
+  padding: 5px 10px 5px 0;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+}
+body .eachblog .blog-head > h1 {
+  color: #3498DB;
+  padding: 20px 20px 20px 0;
+  margin-top: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+body .eachblog .blog-content {
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 16px;
+}
+body .eachblog .blog-content h1:hover,
+body .eachblog .blog-content h2:hover,
+body .eachblog .blog-content h3:hover,
+body .eachblog .blog-content h4:hover,
+body .eachblog .blog-content h5:hover,
+body .eachblog .blog-content h6:hover {
+  color: #000000;
+}
+body .eachblog .blog-content p {
+  margin-top: 20px;
+}
+body .eachblog .blog-footer .tags {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin: 30px 0;
+}
+body .eachblog .blog-footer .tags .tag {
+  margin-right: 20px;
+  padding: 3px 10px;
+  color: rgba(0, 0, 0, 0.65);
+}
+body .eachblog .blog-footer .tags .tag:hover {
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+  /*border-bottom: 2px solid #3498db;*/
+}
+body .eachblog .blog-footer .edite {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  float: right;
+}
+body .eachblog .blog-footer .edite:hover {
+  text-decoration: none;
+}
+@media screen and (min-width: 768px) {
+  .eachblog {
+    font-family: "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1" !important;
+  }
+  .home-logo {
+    color: #3498DB;
+    font-weight: bolder;
+  }
+}
+
+.comment-box{
+    resize: none;
+}
+.comment-icon{
+    background: #cccccc;
+    padding: 10px 0;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-size:30px ;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.comment-time{
+    color: #666;
+    font-size: 13px;
+}
+
+.comment-content{
+    color: #999;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.media{
+    margin: 15px 0;
+}

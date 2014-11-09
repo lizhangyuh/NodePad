@@ -1,0 +1,38 @@
+
+
+<div class="collapse navbar-collapse ">
+    <ul class="nav navbar-nav">
+        <li><a href="/blog">Blog</a></li>
+        <%if(active == 'blog'){%>
+            <li>
+                <a href="" data-toggle="dropdown" id="arvhives-menu">Archives <i class="fa fa-caret-down"></i></a>
+                <ul class="dropdown-menu"  style="padding: 0;border: none" role="menu" aria-labelledby="arvhives-menu">
+                    <%  archiveTimes.forEach(function (archiveTime, index) { %>
+                        <li><a href="/blog/archives/<%= archiveTime%>/"><%= archiveTime%></a></li>
+                    <% }) %>
+                </ul>
+            </li>
+        <%}%>
+        <%if(active == 'blog'){%>
+        <li>
+            <a href="" data-toggle="dropdown" id="tags-menu">Tags <i class="fa fa-caret-down"></i></a>
+            <ul class="dropdown-menu" style="padding: 0;border: none" role="menu" aria-labelledby="tags-menu">
+                <%  tags.forEach(function (atag, index) { %>
+                <li><a href="/blog/tags/<%= atag%>/"><%= atag%></a></li>
+                <% }) %>
+            </ul>
+        </li>
+        <%}%>
+        <li><a href="/about">About</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <% if (user){%>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+        <%}else{%>
+            <li><a href="/login">Login</a></li>
+        <%}%>
+    </ul>
+</div>
+</div>
+</div>

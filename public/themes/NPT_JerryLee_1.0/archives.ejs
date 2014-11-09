@@ -10,7 +10,8 @@
       <div class="container-fluid" style="text-align:left">
       <br>
         <div class="row">
-        <div class="col-sm-9 blog-main">
+        <div class="col-sm-9">
+        <h6><%= archive%> 的归档文章：</h6>
         <hr style="border-top:1px solid #444">
         <% posts.forEach(function (post, index) { %>
           <a href="/blog/post/<%= post.pinyin%>"><h4><%= post.title%></h4></a>
@@ -28,37 +29,37 @@
               <% }%>
              <% })%>
           </p>
-          <div class="blog-content"><%-: post.post|truncate:340 %>...</div>
+          <div class="blog-content"><%-: post.textpost|truncate:340 %>...</div>
           <small><a href="/blog/post/<%= post.pinyin%>">展开阅读 &raquo;</a></small>
           
           <hr style="border-top:1px solid #444">
         <% })%>
           <p>
             <% if (!isFirst){%>
-              <a href="/blog/page/<%= page-1 %>">&laquo;上一页</a>
+              <a href="/blog/archives/<%= archive%>/<%= page-1 %>">&laquo;上一页</a>
             <% }%>
             <% if (!isLast){%>
-              <a href="/blog/page/<%= page+1 %>">下一页 &raquo;</a>
+              <a href="/blog/archives/<%= archive%>/<%= page+1 %>">下一页 &raquo;</a>
             <% }%>
           </p>
         </div>
         <div class="col-sm-2 col-sm-offset-1 pull-right hidden-xs">
-          <div class="sidebar-module">
-            <h4>文章归档</h4>
-            <ol class="list-unstyled">
-            <%  archiveTimes.forEach(function (archiveTime, index) { %>
-              <li><a href="/blog/archives/<%= archiveTime%>/"><%= archiveTime%></a></li>
-            <% }) %>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-              <h4>文章标签</h4>
+            <div class="sidebar-module">
+              <h4>文章归档</h4>
               <ol class="list-unstyled">
-                  <%  tags.forEach(function (atag, index) { %>
-                    <li><a href="/blog/tags/<%= atag%>/"><%= atag%></a></li>
-                  <% }) %>
+              <%  archiveTimes.forEach(function (archiveTime, index) { %>
+                <li><a href="/blog/archives/<%= archiveTime%>/"><%= archiveTime%></a></li>
+              <% }) %>
               </ol>
-          </div>
+            </div>
+            <div class="sidebar-module">
+                <h4>文章标签</h4>
+                <ol class="list-unstyled">
+                    <%  tags.forEach(function (atag, index) { %>
+                    <li><a href="/blog/tags/<%= atag%>/"><%= atag%></a></li>
+                    <% }) %>
+                </ol>
+            </div>
       </div><!-- /.blog-sidebar -->
     
 <%- include footer %>

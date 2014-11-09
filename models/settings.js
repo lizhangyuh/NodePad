@@ -3,6 +3,7 @@ var mongoose = require('./db');
 
 var settingsSchema = mongoose.Schema({
     blogname:String,
+    subtitle:String,
     intro:String,
     starttime:String,
     theme:String,
@@ -12,6 +13,7 @@ var settingsModel = mongoose.model('Settings', settingsSchema);
 
 function Settings(params) {
   this.blogname = params.blogname;
+  this.subtitle = params.subtitle;
   this.intro = params.intro;
   this.starttime = params.starttime;
   this.theme = params.themes;
@@ -30,11 +32,11 @@ Settings.get = function(callback){
     })
 };
 
-//保存全局设置
+//upsert全局设置
 Settings.prototype.save = function(callback){
-	var newSettings = this;
+    var newSettings = this;
 
-    settingsModel.findOneAndUpdate({starttime:newSettings.starttime},newSettings,{upsert:true},function(err){
+    settingsModel.findOneAndUpdate({},newSettings,{upsert:true},function(err){
         if (err) {
             console.log(err);
             return callback("保存失败！");
@@ -42,3 +44,4 @@ Settings.prototype.save = function(callback){
         callback(null);
     });
 };
+

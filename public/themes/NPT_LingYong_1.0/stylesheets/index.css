@@ -1,0 +1,224 @@
+@media screen and (min-width: 768px) {
+  #mynav {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px groove rgba(0, 0, 0, 0.05);
+  }
+  #mynav li > a {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  #mynav li > a:hover {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+#mynav .navbar-brand {
+  color: #4EA9F7 !important;
+  font-weight: normal;
+}
+#mynav .navbar-brand:hover {
+  color: #2a6496 !important;
+}
+#mynav .navbar-brand {
+  font-weight: bold;
+}
+body {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.75) !important;
+}
+body a {
+  text-decoration: none !important;
+}
+body p {
+  margin: 15px 0;
+}
+.bg {
+  margin-top: 0px;
+  background-color: #70B8C4 !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+#blogname{
+    font-weight:bold;
+    color: #fff;
+}
+
+.cover-touming {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.cover-wrapper {
+  color: #fff;
+  max-width: 980px;
+  padding: 100px 20px 10px 10px;
+  margin: 0px auto;
+  text-align: left;
+}
+.cover-wrapper .logo .img {
+  display: block;
+  padding: 20px;
+  max-width: 350px;
+}
+.cover-wrapper .logo .img img {
+  max-width: 100%;
+}
+.cover-wrapper .logo .faith {
+  margin: 40px 20px 20px;
+  font-size: 1.6em;
+  color: #fff;
+}
+.cover-wrapper .cover-index-content {
+  font-size: 13px;
+  margin: 20px;
+}
+.cover-wrapper .cover-index-content .content {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.cover-wrapper .cover-index-content .content p {
+  margin: 0 0 10px;
+  line-height: 1.5em;
+}
+.cover-wrapper .cover-index-content .cover-title {
+  min-width: 150px;
+  background: transparent;
+  border: none;
+  padding: 7px;
+  font-size: 4em;
+  color: rgba(255, 255, 255, 0.3);
+}
+.cover-wrapper .cover-index-content .cover-title:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+.cover-content {
+  font-size: 16px;
+  margin: 0 auto;
+  width: 100%;
+}
+.cover-content .banner {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.cover-content .banner a:hover {
+  text-decoration: none;
+}
+.cover-content .banner h2 {
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 40px;
+  height: 120px;
+  line-height: 120px;
+  color: #fff;
+}
+.cover-content .banner h2 a:hover {
+  text-decoration: none;
+}
+.cover-content .content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.cover-content .content img {
+  width: 100%;
+}
+.blog-index {
+  font-size: 15px;
+  width: 100%;
+  min-height: 800px;
+}
+.blog-index .banner {
+  width: 79%;
+  margin: 0 auto;
+  height: 120px;
+  line-height: 120px;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.blog-index .banner h2 {
+  display: block;
+  max-width: 900px;
+  margin: 0px auto;
+  font-size: 40px;
+  line-height: 120px;
+  color: #6495ed;
+}
+.blog-index .blog-wrapper {
+  display: block;
+  max-width: 960px;
+  margin: 80px auto 0 auto;
+  padding: 0 20px;
+}
+.blog-index .blog-wrapper .header a:hover {
+  text-decoration: none;
+}
+.blog-index .blog-wrapper .blog-index-content {
+  width: 100%!important;
+  padding: 20px 0;
+}
+.blog-index .blog-wrapper .blog-index-content .blog-img {
+  width: 100%;
+}
+.blog-index .blog-wrapper .blog-index-content .blog-img img {
+  width: 100%;
+}
+.blog-index .blog-wrapper .blog-index-content .content {
+  padding: 0px;
+}
+.footer-index {
+  float: left;
+  margin-top: 30px;
+  background-color: rgba(0, 0, 0, 0.9);
+  min-height: 300px;
+  width: 100%;
+}
+.footer-index .footer-nav {
+  padding: 30px 20px;
+  margin: 100px auto 80px auto;
+  position: relative;
+  max-width: 1100px;
+}
+.footer-index .footer-nav ul li {
+  padding: 0px 15px;
+}
+.footer-index .footer-nav .footer-menu {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  float: right;
+}
+.footer-index .footer-nav .footer-menu .logo {
+  float: right;
+}
+.footer-index .footer-nav .footer-menu .logo a:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+.footer-index .footer-nav .footer-menu li {
+  font-size: 20px;
+  padding: 10px 15px;
+}
+.footer-index .footer-nav .footer-menu li a {
+  color: rgba(255, 255, 255, 0.2);
+}
+.footer-index .footer-nav .footer-menu li a:hover {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.3);
+}
+.footer-index .footer-nav .footer-menu2 {
+  float: right;
+}
+.footer-index .footer-nav .footer-menu2 li a {
+  color: rgba(100, 149, 237, 0.3);
+}
+.footer-index .footer-nav .footer-menu2 li a:hover {
+  color: rgba(100, 149, 237, 0.4);
+}
+
+.login-box{
+    text-align: left;
+    margin-top: 8%;
+    padding: 30px 50px 70px 50px;
+    border: 1px solid #ddd;
+    text-align:left;
+    background: #fafafa;
+}

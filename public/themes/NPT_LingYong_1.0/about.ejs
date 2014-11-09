@@ -1,0 +1,26 @@
+<%- include header %>
+<%- include menu %>
+<div id="about" class="pager">
+    <div class="container">
+        <div class="myimg"><img width="220" src="/themes/<%= settings.theme%>/images/about.png"></div>
+        <div class="about-content col-sm-12 col-lg-8 col-lg-offset-2">
+            <% if(user) { %>
+            <div class="quote"><a
+                    href="/about/edit">编辑本页</a>
+            </div>
+            <% } %>
+            <%if (about){%>
+            <h3><%= about.title %></h3>
+
+            <div class="aboutme">
+                <%- about.post %>
+            </div>
+            <%}else{%>
+                <h3 style="margin-top: 80px">“伟大始于渺小”</h3>
+            <%}%>
+        </div>
+    </div>
+</div>
+<%- include footer%>
+</body>
+</html>

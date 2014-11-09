@@ -33,9 +33,10 @@ module.exports = function(app,url) {
                                 req.flash('error', err);
                                 return res.redirect('/err');
                             }
-                            //过滤markdown格式
+                            //处理markdown格式
                             posts.forEach(function (post) {
-                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
+                                post.textpost = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');//纯文本
+                                post.post = markdown.toHTML(post.post);//html格式
                             });
                             res.render(settings.theme+'/blog', {
                                 title: '博客',
@@ -79,9 +80,10 @@ module.exports = function(app,url) {
                                 req.flash('error', err);
                                 return res.redirect('/err');
                             }
-                            //过滤markdown格式
+                            //处理markdown格式
                             posts.forEach(function (post) {
-                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
+                                post.textpost = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');//纯文本
+                                post.post = markdown.toHTML(post.post);//html格式
                             });
                             res.render(settings.theme+'/blog', {
                                 title: '博客',
@@ -276,9 +278,10 @@ module.exports = function(app,url) {
                                 req.flash('error', err);
                                 return res.redirect('/err');
                             }
-                            //过滤markdown格式
+                            //处理markdown格式
                             posts.forEach(function (post) {
-                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
+                                post.textpost = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');//纯文本
+                                post.post = markdown.toHTML(post.post);//html格式
                             });
                             res.render(settings.theme+'/archives', {
                                 title: '文章归档',
@@ -330,9 +333,10 @@ module.exports = function(app,url) {
                                 req.flash('error', err);
                                 return res.redirect('/err');
                             }
-                            //过滤markdown格式
+                            //处理markdown格式
                             posts.forEach(function (post) {
-                                post.post = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
+                                post.textpost = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');//纯文本
+                                post.post = markdown.toHTML(post.post);//html格式
                             });
                             res.render(settings.theme+'/tags', {
                                 title: tag + '标签下的文章',

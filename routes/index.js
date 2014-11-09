@@ -5,6 +5,8 @@ var crypto = require('crypto');
 var User = require('../models/user.js');
 var init = require('../init');
 var configs = require('../configs.json');
+var Post = require('../models/post.js');
+var markdown = require("markdown").markdown;
 
 module.exports = function (app, url) {
     //去掉url前斜杠
@@ -16,14 +18,27 @@ module.exports = function (app, url) {
             if (!user) {
                 return res.redirect('/reg');//返回注册页
             }
-
             init(function (settings) {
-                res.render(settings.theme+'/index',
-                    {title: '主页',
-                        active: active,
-                        user: req.session.user,
-                        settings: settings
-                    });
+                Post.get({draft: "0"}, 1, settings.limit, function (err, posts, total) {
+                    if (err) {
+                        posts = [];
+                    } else {
+                        //过滤markdown格式
+                        posts.forEach(function (post) {
+                            post.textpost = post.post.replace(/\![^\)]*\)|\s{2,}|\`|\[|\][^\)]*\)|\*|\>/g, '\r\n');
+                            post.post = markdown.toHTML(post.post);
+                        });
+
+                        res.render(settings.theme + '/index',
+                            {
+                                title: '主页',
+                                active: active,
+                                user: req.session.user,
+                                posts: posts,
+                                settings: settings
+                            });
+                    }
+                });
             });
         });
     });

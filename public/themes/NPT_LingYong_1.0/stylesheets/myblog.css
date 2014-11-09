@@ -1,0 +1,84 @@
+@media screen and (min-width: 768px) {
+  #mynav {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px groove rgba(0, 0, 0, 0.05);
+  }
+  #mynav li > a {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  #mynav li > a:hover {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+#mynav .navbar-brand {
+    color: #4EA9F7 !important;
+    font-weight: normal;
+}
+#mynav .navbar-brand:hover {
+    color: #2a6496 !important;
+}
+#mynav .navbar-brand {
+    font-weight: bold;
+}
+body {
+  background-color: rgba(0, 0, 0, 0.005) !important;
+}
+body .home-logo {
+  color: #3498DB;
+  font-weight: bolder;
+}
+body .allblog {
+  max-width: 720px;
+  min-height: 500px;
+}
+body .allblog .blog-img img:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+body .allblog .blog-title {
+  padding: 10px 10px 10px 0px;
+  color: rgba(0, 0, 0, 0.9);
+  display: block;
+}
+body .allblog .blog-title:hover {
+  text-decoration: none;
+  color: dodgerblue;
+}
+body .allblog .blog-wrapper {
+  padding: 10px;
+}
+body .allblog .ajax {
+  padding: 30px 20px;
+}
+body .allblog .ajax .get-ten {
+  border-radius: 2px;
+  height: 50px;
+  border: none;
+}
+body .allblog .blog-content {
+  color: rgba(0, 0, 0, 0.65);
+  line-height: 1.5em;
+}
+body .allblog .blog-content:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+body .allblog .blog-content pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  whitewhite-space: normal ;
+  /* Internet Explorer 5.5+ */
+}
+body .allblog .blog-content-footer {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  font-family: "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1" !important;
+}
+body .allblog .blog-content-footer i {
+  color: #3498db;
+}
+body .allblog img {
+  max-width: 100%;
+  margin: 10px 0;
+}

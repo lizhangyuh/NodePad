@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title><%= title%> · <%= settings.blogname%></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="author" content="qora">
+    <meta name="keywords" content="qora,bitcoin,btc,qora blog">
+    <meta name="application-name" content="qora.club">
+    <link rel="stylesheet" href="/themes/<%= settings.theme%>/stylesheets/bootstrap.css">
+    <%if (active == ""){%>
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/themes/<%= settings.theme%>/stylesheets/index_ie.css">
+        <![endif]-->
+        <link rel="stylesheet" href="/themes/<%= settings.theme%>/stylesheets/index.css">
+        <style>
+            .bg {
+                background-image: url('http://lingyong-me.qiniudn.com/142H.jpg 2014-10-28 16:17-px1366');
+            }
+        </style>
+    <%}%>
+    <%if (active == "blog"){%>
+        <link rel="stylesheet" href="/themes/<%= settings.theme%>/stylesheets/myblog.css">
+        <link rel="stylesheet" href="/themes/<%= settings.theme%>/stylesheets/eachblog.css">
+    <link rel="stylesheet" href="/themes/<%= settings.theme%>/stylesheets/view.css">
+    <%}%>
+    <%if (active == "about"){%>
+    <link rel="stylesheet" href="/themes/<%= settings.theme%>/stylesheets/about.css">
+    <%}%>
+</head>
+<body data-spy="scroll" data-target=".bs-navbar-scrollspy">
+<div id="mynav" role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+                <%= settings.blogname%>
+            </a>
+        </div>

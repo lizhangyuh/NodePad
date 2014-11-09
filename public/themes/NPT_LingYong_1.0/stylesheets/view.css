@@ -1,0 +1,112 @@
+@media screen and (min-width: 768px) {
+  #mynav {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px groove rgba(0, 0, 0, 0.05);
+  }
+  #mynav li > a {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  #mynav li > a:hover {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+#mynav .navbar-brand {
+    color: #4EA9F7 !important;
+    font-weight: normal;
+}
+#mynav .navbar-brand:hover {
+    color: #2a6496 !important;
+}
+#mynav .navbar-brand {
+    font-weight: bold;
+}
+body {
+  background-color: #fff!important;
+}
+body .pager {
+  margin-top: 70px;
+}
+body .blog {
+  position: relative;
+  margin:5px 5px 0 0;
+  display: block;
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+body .blog .comment-box {
+  width: 100%;
+  height: 200px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #47abff;
+  z-index: 3;
+  font-size: 25px;
+  color: #fff;
+}
+body .blog .comment-box span {
+  line-height: 200px;
+  font-size: 25px;
+}
+body .blog .imgwrap {
+  height: 200px!important;
+  overflow: hidden;
+}
+body .blog .imgwrap img {
+  display: block;
+  width: 100%!important;
+  height: 200px!important;
+}
+body .blog .wrap {
+  display: block;
+  overflow: hidden;
+  height: 200px;
+  line-height: 20px;
+}
+body .blog .wrap h2 {
+  display: block;
+  height: 1em;
+  overflow: hidden;
+  font-size: 22px;
+}
+body .blog .wrap:hover {
+  text-decoration: none;
+}
+body .blog .wrap .blog-content {
+  display: block;
+  overflow: hidden;
+  height: 10em;
+  padding: 0 10px;
+  color: rgba(0, 0, 0, 0.7);
+}
+body .blog .haveimg h2 {
+  font-size: 22px!important;
+  display: block;
+  overflow: hidden;
+  line-height: 200px;
+  height: 200px;
+  width: 100%;
+  top: 0px;
+  position: absolute;
+  left: 0;
+  margin-top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+body .blog .haveimg h2:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+body .month {
+  margin-top: 40px;
+  display: block;
+  position: relative;
+  width: 100%;
+}
+body .month .month-title h2 {
+  margin-top: 0;
+}
+
+.blog-time{
+    line-height: 28px;
+}

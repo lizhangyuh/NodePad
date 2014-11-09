@@ -1,0 +1,22 @@
+<%- include login_header %>
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container container-fluid row">
+      <div class="login-box col-sm-8 col-sm-offset-1 col-lg-4 col-lg-offset-4">
+
+      <form class="form-signin" role="form" method="post">
+        <h2 class="form-signin-heading">登录 <%= settings.blogname%></h2><br>
+        <input name="username" type="text" class="form-control" placeholder="用户名" required autofocus><br>
+        <input name="password" type="password" class="form-control" placeholder="密码" required>
+        <br>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="登 录"/>
+      </form>
+
+    </div>
+
+<%- include login_footer %>
+
+
+    

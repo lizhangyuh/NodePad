@@ -91,6 +91,7 @@
                         </div>
                         <br>
                         <div class="clearfix"></div>
+                        <!-- 评论 -->
                         <div class="blog-comment">
                             <form id="comment-form" role="form" method="post" action="/comment/<%= post.pinyin%>">
                                 <hr style="border-top:1px solid #444">
@@ -106,7 +107,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="button" class="visible-md visible-lg comment-save btn btn-primary pull-right" onclick="comment();notempty();" value="发 表"/>
+                                    <input type="button" class="visible-md visible-lg comment-save btn btn-primary pull-right" onclick="comment()" value="发 表"/>
                                     <input type="submit" class="visible-sm visible-xs btn btn-primary pull-right" value="发 表"/>
                                 </div>
                             </form>

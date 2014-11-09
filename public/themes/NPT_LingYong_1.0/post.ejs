@@ -1,0 +1,109 @@
+<%- include header %>
+<%- include menu %>
+<script language="JavaScript">
+    function comment() {
+        if ($('#name').val() == ''){
+            alert('壮士，请留下姓名！');
+        }else if($('#content').val() == ''){
+            alert('你到底想说什么？');
+        }else{
+            $('.comment-save').button('loading');
+            $.post('../../comment/<%= post.pinyin%>',$('#comment-form').serialize(),function(data) {
+                if(data=='noname') {
+                    alert('');
+                }else if(data=='nocontent') {
+                    alert('');
+                }else{
+                    alert('评论成功！');
+                    location.reload();
+                }
+            })
+        }
+    }
+
+</script>
+<div id="eachblog" class="container eachblog javascript">
+<div class="row blog-wrapper">
+<div class="tree-select">
+<div class="blog-head"><h1><%= post.title %></h1>
+
+    <div class="row time-and-comment">
+        <span class="time"><%= post.time.minute %></span>
+        <% if(user) { %>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a
+                href="/blog/edit/<%= post._id %>">编辑文章</a>
+        <% } %>
+        <a href="" target="_blank" id="shareBtn"><span class="pull-right"><i class="fa fa-weibo"></i> 转发到微博</span></a>
+        <script language="JavaScript">
+            /* weiboShare */
+            function weiboShare(){
+                var wb_shareBtn = document.getElementById("shareBtn")
+                wb_url = document.URL, //获取当前页面地址，也可自定义
+                        wb_appkey = "",
+                        wb_title = "【<%= settings.blogname%>】 " + document.title + '（采用jlBox搭建博客）',
+                        wb_ralateUid = "",
+                        wb_pic = "",
+                        wb_language = "zh_cn";
+
+                wb_shareBtn.setAttribute("href","http://service.weibo.com/share/share.php?url="+wb_url+"&searchPic=true&appkey="+wb_appkey+"&title="+wb_title+"&ralateUid="+wb_ralateUid+"&language="+wb_language+"");
+            }
+            weiboShare()
+        </script>
+    </div>
+</div>
+<!--.blog-treeul#tree.list-unstyled.ztree-->
+<div class="blog-content blogcontent">
+    <%- post.post %>
+</div>
+</div>
+</div>
+<div class="blog-footer">
+    <div class="row tags">
+        文章标签：
+        <% post.tags.forEach(function (tag, index) { %>
+        <a href="/tag/<%= tag%>" target="_blank" class="tag"><%= tag%></a>
+        <%})%>
+    </div>
+
+</div>
+    <div class="clearfix"></div>
+    <!-- 评论 -->
+    <div class="blog-comment">
+        <form id="comment-form" role="form" method="post" action="/comment/<%= post.pinyin%>">
+            <hr>
+            <div class="form-group">
+                <label for="name"><i class="fa fa-comment"></i>&nbsp;&nbsp;评论：</label>
+                <div class="col-sm-13">
+                    <input type="text" class="form-control comment-box" id="name" name="name" placeholder="昵称"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-13">
+                    <textarea class="form-control comment-box" id="content" name="content" rows="5" placeholder="留言仅支持纯文本..."></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="button" class="comment-save btn btn-primary pull-right" data-loading-text="提交中..." onclick="comment();" value="发 表"/>
+                <!--<input type="submit" class="visible-sm visible-xs btn btn-primary pull-right" value="发 表"/>-->
+            </div>
+        </form>
+        <div class="clearfix"></div>
+        <%post.comments.forEach(function(comment,index){%>
+        <hr>
+        <div class="media">
+            <span class="media-object comment-icon pull-left"><i class="fa fa-user"></i></span>
+            <div class="media-body">
+                <h4 class="media-heading"><%=comment.name%> ：<span class="comment-time pull-right"><%= comment.time%></span></h4>
+                <p class="comment-content"><%= comment.content%></p>
+            </div>
+        </div>
+        <hr>
+        <%})%>
+    </div>
+</div>
+</div>
+<%- include footer%>
+<!--script(src='/javascripts/jquery.ztree.core-3.5.min.js')--><!--script(src='/javascripts/ztree_toc.min.js')-->
+
+</body>
+</html>

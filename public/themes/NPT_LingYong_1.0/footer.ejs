@@ -1,0 +1,44 @@
+<div class="footer">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-inline">
+                        <li><a href="http://weibo.com/jerrylee2014/" target="_blank"><i class="fa fa-weibo"></i></a></li>
+                        <li><a href="https://github.com/lizhangyuh" target="_blank"><i class="fa fa-github"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <ul class="list-inline">
+                        <li> Power By &nbsp;<a href="http://nodejs.org">NodePad</a></li>
+                        <li> Design By &nbsp;<a href="http://lingyong.me">lingyong</a>
+                        </li>
+                        <li>&copy; 2014 &nbsp; Modified by&nbsp;<a href="http://jl.geekwall.org">JerryLee</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/themes/<%= settings.theme%>/javascripts/jquery.js"></script>
+<script src="/themes/<%= settings.theme%>/javascripts/jquery.scrollUp.min.js"></script>
+<script src="/themes/<%= settings.theme%>/javascripts/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $.scrollUp({
+            scrollName: 'scrollUp', // Element ID
+            topDistance: '300', // Distance from top before showing element (px)
+            topSpeed: 300, // Speed back to top (ms)
+            animation: 'fade', // Fade, slide, none
+            animationInSpeed: 200, // Animation in speed (ms)
+            animationOutSpeed: 200, // Animation out speed (ms)
+            scrollText: 'Top', // Text for element
+            activeOverlay: false // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+        });
+    });
+    <%if (active == ""){%>
+    function toIndex(){
+        $('html, body').animate({scrollTop: $('.bg').height()}, 900);
+    }
+    <%}%>
+</script>
