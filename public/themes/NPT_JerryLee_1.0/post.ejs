@@ -17,6 +17,7 @@
         }else if($('#content').val() == ''){
             alert('你到底想说什么？');
         }else{
+            $('.comment-save').button('loading');
             $.post('../../comment/<%= post.pinyin%>',$('#comment-form').serialize(),function(data) {
                 if(data=='noname') {
                     alert('');
@@ -107,7 +108,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="button" class="visible-md visible-lg comment-save btn btn-primary pull-right" onclick="comment()" value="发 表"/>
+                                    <input type="button" class="visible-md visible-lg comment-save btn btn-primary pull-right"  data-loading-text="提交中..." onclick="comment()" value="发 表"/>
                                     <input type="submit" class="visible-sm visible-xs btn btn-primary pull-right" value="发 表"/>
                                 </div>
                             </form>
