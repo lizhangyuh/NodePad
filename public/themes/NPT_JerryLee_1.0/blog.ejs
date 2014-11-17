@@ -27,6 +27,7 @@
                  <a href="/blog/tags/<%= tag%>"><%= tag%></a>
               <% }%>
              <% })%>
+              <span class="pull-right"><i class="glyphicon glyphicon-eye-open"></i> <%= post.pv%>&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-comment"></i> <%= post.comments.length%> </span>
           </p>
           <div class="blog-content"><%-: post.textpost|truncate:340 %>...</div>
           <small><a href="/blog/post/<%= post.pinyin%>">展开阅读 &raquo;</a></small>

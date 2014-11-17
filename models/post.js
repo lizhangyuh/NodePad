@@ -1,6 +1,7 @@
 //文章模块
 var mongoose = require('./db');
 var pinyin = require('pinyin');
+var markdown = require("markdown").markdown;
 
 var postsSchema = mongoose.Schema({
     title: String,
@@ -8,11 +9,13 @@ var postsSchema = mongoose.Schema({
     time:{date:Date,minute:String},
     edittime:{date:Date,minute:String},
     post:String,
+    firstimg:String,
     author:String,
     draft:String,
     tags:Array,
     archiveTime:String,
-    comments:Array
+    comments:Array,
+    pv:Number
 })
 
 var aboutSchema = mongoose.Schema({
@@ -57,7 +60,9 @@ Post.prototype.save = function(callback){
 	  tags:this.tags,
 	  author: this.author,
 	  archiveTime:date.toGMTString().split(" ")[2]+" "+date.getFullYear(),
-	  post: this.post
+	  post: this.post,
+      firstimg:markdown.toHTML(this.post).match(/(src="[^"]*)"/g),
+      pv:0
 	};
 
     var apost = new postsModel(post);
@@ -106,10 +111,32 @@ Post.get = function(query,page,limit,callback){
             if(err){
                 return callback(err);
             }
+            //获得文章第一张图片
+//            posts.forEach(function (post) {
+//                post.firstimg = markdown.toHTML(post.post).match(/(src="[^"]*)"/g);
+//            });
             callback(null,posts,total);
         });
     });
 };
+
+//根据条件修改文章pv
+/*
+ query{
+ pinyin:标题拼音
+ }
+*/
+Post.count = function(query,callback){
+
+    postsModel.where(query).update({ $inc: { "pv": 1 }}, function(err){
+        if(err){
+            console.log(err);
+            return callback(err);
+        }
+        callback(null);
+    });
+};
+
 
 //根据id删除文章
 Post.del = function(id,callback){
@@ -142,7 +169,8 @@ Post.prototype.edit = function(id,callback){
 	  draft:this.draft,
 	  tags:this.tags,
 	  author: this.author,
-	  post: this.post
+	  post: this.post,
+      firstimg:markdown.toHTML(this.post).match(/(src="[^"]*)"/g)
 	};
     var _id = new require('mongodb').ObjectID(id);
 

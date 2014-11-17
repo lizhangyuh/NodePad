@@ -22,7 +22,7 @@ Comment.prototype.save = function(callback) {
         if(err){
             return callback(err);
         }
-        post.comments = post.comments.unshift(comment);
+        post.comments = post.comments.push(comment);
         postsModel.findOneAndUpdate({pinyin:pinyin},{comments:post.comments},null,function(err){
             if(err){
                 console.log(err);

@@ -66,6 +66,8 @@
                                 <% }) %>
                                 &nbsp;&nbsp;&nbsp;
                                 <a href="" target="_blank" id="shareBtn"><span class="glyphicon glyphicon-share"></span>&nbsp;转发到微博</a>
+                                &nbsp;
+                                <i class="glyphicon glyphicon-eye-open"></i> 阅读数：<%= post.pv%>
                                 <script language="JavaScript">
                                     /* weiboShare */
                                     function weiboShare(){
@@ -86,6 +88,7 @@
                                         href="/blog/edit/<%= post._id %>"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑文章</a>
                                 <% } %>
                             </small>
+                            <small class="pull-right"></small>
                         </p>
                         <div class="blog-post" style="font-size:13px;color:#aaa;">
                             <%- post.post %>
@@ -98,6 +101,15 @@
                                 <hr style="border-top:1px solid #444">
                                 <div class="form-group">
                                     <label for="name"><i class="glyphicon glyphicon-comment"></i>&nbsp;&nbsp;评论：</label>
+                                    <span class="pull-right">
+                                        <% if(post.comments.length==0){%>
+                                            沙发
+                                        <%}else if(post.comments.length==1){%>
+                                            板凳
+                                        <%}else {%>
+                                            # <%= post.comments.length%>
+                                        <%}%>
+                                    </span>
                                     <div class="col-sm-13">
                                         <input type="text" class="form-control comment-box" id="name" name="name" placeholder="昵称"></textarea>
                                     </div>
@@ -117,7 +129,18 @@
                             <div class="media">
                                 <span class="media-object comment-icon pull-left"><%-: comment.name|truncate:1 %></span>
                                 <div class="media-body">
-                                    <h4 class="media-heading"><%=comment.name%> ：<span class="comment-time pull-right"><%= comment.time%></span></h4>
+                                    <h4 class="media-heading"><%=comment.name%> ：
+                                        <span class="comment-time pull-right">
+                                            <% if(index==0){%>
+                                                沙发
+                                            <%}else if(index==1){%>
+                                                板凳
+                                            <%}else {%>
+                                            # <%= index%>
+                                            <%}%>
+                                           | <%= comment.time%>
+                                        </span>
+                                    </h4>
                                     <p class="comment-content"><%= comment.content%></p>
                                 </div>
                             </div>

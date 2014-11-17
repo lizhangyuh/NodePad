@@ -136,15 +136,17 @@ module.exports = function(app,url) {
                                     posts.forEach(function (post) {
                                         post.post = markdown.toHTML(post.post);
                                     });
-                                    res.render(settings.theme+'/post', {
-                                        title: posts[0].title,
-                                        active: active,
-                                        post: posts[0],
-                                        user: req.session.user,
-                                        author: user,
-                                        archiveTimes: archiveTimes,
-                                        tags: tags,
-                                        settings:settings
+                                    Post.count({pinyin: req.params.pinyin},function(err){
+                                        res.render(settings.theme+'/post', {
+                                            title: posts[0].title,
+                                            active: active,
+                                            post: posts[0],
+                                            user: req.session.user,
+                                            author: user,
+                                            archiveTimes: archiveTimes,
+                                            tags: tags,
+                                            settings:settings
+                                        });
                                     });
                                 });
                             });

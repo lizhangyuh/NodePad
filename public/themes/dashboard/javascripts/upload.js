@@ -19,7 +19,7 @@ $(function() {
         done:function(e,result){
            $("#addurl").html('添加至文章').click(function () {
                 for (var i = result.files.length - 1; i >= 0; i--) {
-                    $('#post').val($('#post').val()+'  \r\n[![pic](/images/files'+result.result.time+'_'+result.result.files[i].name+')](/images/files'+result.result.time+'_'+result.result.files[i].name+')  \r\n');
+                    $('#post').val($('#post').val()+'  \r\n[![pic](http://'+window.location.host+'/images/files'+result.result.time+'_'+result.result.files[i].name+')](/images/files'+result.result.time+'_'+result.result.files[i].name+')  \r\n');
                 };
            });
         }
