@@ -32,11 +32,25 @@ Settings.get = function(callback){
     })
 };
 
-//upsert全局设置
+//创建全局设置
+Settings.prototype.create = function(callback){
+    var settings = this;
+
+    var newSettings = settingsModel(settings);
+    newSettings.save(function(err){
+        if (err) {
+            console.log(err);
+            return callback("保存失败！");
+        };
+        callback(null);
+    });
+}
+
+//更新全局设置
 Settings.prototype.save = function(callback){
     var newSettings = this;
 
-    settingsModel.findOneAndUpdate({},newSettings,{upsert:true},function(err){
+    settingsModel.findOneAndUpdate({},newSettings,{upsert:false},function(err){
         if (err) {
             console.log(err);
             return callback("保存失败！");

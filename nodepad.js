@@ -8,10 +8,15 @@ var spawn = require('child_process').spawn;
     console.log('欢迎使用NodePad！');
 
     var fs = require('fs');
-    var data=fs.readFileSync('configs.json','utf-8');
+    var data;
     var argvs = {};
 
     //判断是否已安装
+    if(fs.existsSync('configs.json')){
+        var data=fs.readFileSync('configs.json',{encoding:'utf-8'});
+    }else{
+        var data = null;
+    }
     if(!data){
         console.log('    ');
         console.log('你尚未安装NodePad，现在开始安装！');
@@ -41,9 +46,12 @@ var spawn = require('child_process').spawn;
             //数据库配置写入configs.json
             console.log('    ');
             console.log('创建数据库配置..................');
-            fs.writeFile('configs.json',JSON.stringify(argvs, null, 4),function(err) {
+            fs.writeFile('./configs.json',JSON.stringify(argvs, null, 4),{flag:'w'},function(err) {
                 if (err) {
-                    if (err) throw err;
+                    // 删除配置文件
+                    fs.unlinkSync('configs.json');
+                    console.log('配置文件已删除！');
+                    throw err;
                 }
 
                 console.log('Done!');
@@ -63,9 +71,13 @@ var spawn = require('child_process').spawn;
                     limit:5
                 });
 
-                settings.save(function(err) {
+                settings.create(function(err) {
                     if (err) {
-                        return console.log('安装失败，创建全局设置不成功~');
+                        // 删除配置文件
+                        fs.unlinkSync('configs.json');
+                        console.log('配置文件已删除！');
+
+                        return console.log('安装失败，创建全局设置不成功.');
                     }
                     console.log('Done!');
                     console.log('安装完成!正在启动程序......');
