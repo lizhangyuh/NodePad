@@ -4,6 +4,7 @@
  */
 
 var express = require('express');
+var methodOverride = require('method-override');
 var configs = require('./configs.json');
 
 //引用路由文件
@@ -30,7 +31,7 @@ app.use(express.favicon(path.join(__dirname,'/public/favicon.ico')));
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.methodOverride());
+app.use(methodOverride());
 if (configs.db && configs.cookieSecret){
     app.use(express.cookieParser());
     app.use(express.session({
