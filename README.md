@@ -2,11 +2,14 @@
 
 需要环境：node.js + mongoDB
 
-安装命令：node nodepad [数据库名称] [数据库地址] [cookie密钥]，例如：node nodepad db 127.0.0.1 test
+安装命令：node nodepad [数据库名称] [数据库地址] [cookie密钥]
+
+例如：node nodepad db 127.0.0.1 test
 
 运行命令：node nodepad
 
 Linux环境下最好使用sudo运行语句。
+
 ================================================================
 
 **自定义主题**
