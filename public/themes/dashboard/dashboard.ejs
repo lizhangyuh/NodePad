@@ -20,7 +20,7 @@
               <tbody>
                 <% posts.forEach(function (posts, index) { %>
                 <tr>
-                  <td width="59%"><% if (posts.draft==1){%>[草稿] <%}%><a href="/blog/post/<%= posts.pinyin%>"><%=: posts.title %></a></td>
+                  <td width="59%"><% if (posts.draft==1){%>[草稿] <%}%><a href="/blog/post/<%= posts.pinyin%>"><%= posts.title %></a></td>
                   <td width="15%"><%= posts.time.minute%></td>
                   <td width="15%"><% if (posts.edittime) {%><%= posts.edittime.minute%><% }%></td>
                   <td width="11%">
