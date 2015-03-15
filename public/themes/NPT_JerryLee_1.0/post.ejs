@@ -127,7 +127,7 @@
                             <div class="clearfix"></div>
                             <%post.comments.forEach(function(comment,index){%>
                             <div class="media">
-                                <span class="media-object comment-icon pull-left"><%-: comment.name|truncate:1 %></span>
+                                <span class="media-object comment-icon pull-left"><%= comment.name.substring(0,1) %></span>
                                 <div class="media-body">
                                     <h4 class="media-heading"><%=comment.name%> ：
                                         <span class="comment-time pull-right">

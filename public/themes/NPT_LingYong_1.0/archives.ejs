@@ -12,7 +12,7 @@
                 <div class="blog"><a href="/blog/post/<%= post.pinyin%>" target="_blank" class="wrap"><h2><%= post.title%></h2>
 
                         <div class="blog-content">
-                            <%-: post.textpost|truncate:100 %>
+                            <%= post.textpost.substring(0,100) %>
                         </div>
                         <div class="comment-box hidden"><span class="blog-time"><%-: post.time.minute|truncate:10%></span></div>
                     </a></div>
